@@ -1,4 +1,3 @@
-# python-game-GreatFireDragon
-python-game-GreatFireDragon created by GitHub Classroom
+# Кулешов Михаил Сергеевич 2-МД-25
+разработка игры на питоне 4 семестр 2023 год
 
-// this is a shame we write on python not js tbh
