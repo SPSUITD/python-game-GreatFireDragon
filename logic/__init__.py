@@ -9,20 +9,44 @@ from ._constants import *
 
 class MyGame(arcade.Window):
     def __init__(self):
+
+        # Call the parent class and set up the window
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+        # Our TileMap Object
         self.tile_map = None
+
+        # Our Scene Object
         self.scene = None
+
+        # Separate variable that holds the player sprite
         self.player_sprite = None
+
+        # Our physics engine
         self.physics_engine = None
+
+        # A Camera that can be used for scrolling the screen
         self.camera = None
+
+        # A Camera that can be used to draw GUI elements
         self.gui_camera = None
 
+        # Keep track of the score
         self.score = 0
+
+        # Do we need to reset the score?
+        self.reset_score = True
+
+        # Where is the right edge of the map?
+        self.end_of_map = 0
+
+        # Level
+        self.level = 1
+
         # Load sounds
         self.collect_coin_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         self.jump_sound = arcade.load_sound(":resources:sounds/jump1.wav")
-
-        arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
+        self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
 
     from ._setup import setup
 
@@ -52,20 +76,54 @@ class MyGame(arcade.Window):
     from ._camera import center_camera_to_player
 
     # Здесь основная логика
-    def on_update(self, delta_time):
+    def update(self, delta_time):
+        """Movement and game logic"""
+
         # Move the player with the physics engine
         self.physics_engine.update()
 
         # See if we hit any coins
         coin_hit_list = arcade.check_for_collision_with_list(
-            self.player_sprite, self.scene["Coins"]
+            self.player_sprite, self.scene[LAYER_NAME_COINS]
         )
 
         # Loop through each coin we hit (if any) and remove it
         for coin in coin_hit_list:
-            coin.remove_from_sprite_lists()                 # Remove the coin
-            arcade.play_sound(self.collect_coin_sound)      # Play a sound
-            self.score += 1                                 # Add one to the score
+            # Remove the coin
+            coin.remove_from_sprite_lists()
+            # Play a sound
+            arcade.play_sound(self.collect_coin_sound)
+            # Add one to the score
+            self.score += 1
+
+        # Did the player fall off the map?
+        if self.player_sprite.center_y < -100:
+            self.player_sprite.center_x = PLAYER_START_X
+            self.player_sprite.center_y = PLAYER_START_Y
+
+            arcade.play_sound(self.game_over)
+
+        # Did the player touch something they should not?
+        if arcade.check_for_collision_with_list(
+            self.player_sprite, self.scene[LAYER_NAME_DONT_TOUCH]
+        ):
+            self.player_sprite.change_x = 0
+            self.player_sprite.change_y = 0
+            self.player_sprite.center_x = PLAYER_START_X
+            self.player_sprite.center_y = PLAYER_START_Y
+
+            arcade.play_sound(self.game_over)
+
+        # See if the user got to the end of the level
+        if self.player_sprite.center_x >= self.end_of_map:
+            # Advance to the next level
+            self.level += 1
+
+            # Make sure to keep the score from this level when setting up the next level
+            self.reset_score = False
+
+            # Load the next level
+            self.setup()
 
         # Position the camera
         self.center_camera_to_player()
