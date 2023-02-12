@@ -1,8 +1,8 @@
 # Tiled — редактор 2D-уровней для python arcade
 Tiled/*
 
-# Тест разбития на файлы
-# logic/*
+# картинки
+images/*
 
 # Файлы VSCodium
 __pycache__/*
