@@ -47,6 +47,8 @@ class MyGame(arcade.Window):
         self.collect_coin_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         self.jump_sound = arcade.load_sound(":resources:sounds/jump1.wav")
         self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
+        self.main_theme = arcade.load_sound("sounds/carolOfTheBells.mp3")
+
 
     from ._setup import setup
 
