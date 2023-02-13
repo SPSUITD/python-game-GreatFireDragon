@@ -3,6 +3,7 @@ Tiled/*
 
 # картинки
 images/*
+soudns/*
 
 # Файлы VSCodium
 __pycache__/*
