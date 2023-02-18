@@ -2,6 +2,7 @@
 import arcade
 # files
 import logic
+from Card import Card
 
 
 

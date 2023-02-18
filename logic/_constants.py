@@ -1,27 +1,25 @@
-# Constants
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 650
-SCREEN_TITLE = "Platformer"
+# Экран и название
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 768
+SCREEN_TITLE = "Drag and Drop Cards"
 
-# Constants used to scale our sprites from their original size
-CHARACTER_SCALING = 1
-TILE_SCALING = 0.5
-COIN_SCALING = 0.5
-SPRITE_PIXEL_SIZE = 128
-GRID_PIXEL_SIZE = SPRITE_PIXEL_SIZE * TILE_SCALING
+# Scaling
+CARD_SCALE = 0.6
+# Размер карт
+CARD_WIDTH = CARD_SCALE * 140
+CARD_HEIGHT = CARD_SCALE * 190
 
-# Movement speed of player, in pixels per frame
-PLAYER_MOVEMENT_SPEED = 10
-GRAVITY = 1
-PLAYER_JUMP_SPEED = 20
+# "Мат" на котором лежат карты
+MAT_PERCENT_OVERSIZE = 1.25
+MAT_HEIGHT = int(CARD_HEIGHT * MAT_PERCENT_OVERSIZE)
+MAT_WIDTH = int(CARD_WIDTH * MAT_PERCENT_OVERSIZE)
+# отступ
+VERTICAL_MARGIN_PERCENT = 0.10
+HORIZONTAL_MARGIN_PERCENT = 0.10
 
-# Player starting position
-PLAYER_START_X = 64
-PLAYER_START_Y = 225
+BOTTOM_Y = MAT_HEIGHT / 2 + MAT_HEIGHT * VERTICAL_MARGIN_PERCENT    # Y bottom row
+START_X = MAT_WIDTH / 2 + MAT_WIDTH * HORIZONTAL_MARGIN_PERCENT     # X start (left)
 
-# Layer Names from our TileMap
-LAYER_NAME_PLATFORMS = "Platforms"
-LAYER_NAME_COINS = "Coins"
-LAYER_NAME_FOREGROUND = "Foreground"
-LAYER_NAME_BACKGROUND = "Background"
-LAYER_NAME_DONT_TOUCH = "Don't Touch"
+# Константы карт
+CARD_VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+CARD_SUITS = ["Clubs", "Hearts", "Spades", "Diamonds"]
