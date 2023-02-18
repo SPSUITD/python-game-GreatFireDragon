@@ -7,6 +7,7 @@ def setup(self):
     self.held_cards = []
     self.held_cards_original_position = []
     self.card_list = arcade.SpriteList()
+    self.cursor_sprite = arcade.Sprite()
 
     # Create every card
     for card_suit in CARD_SUITS:

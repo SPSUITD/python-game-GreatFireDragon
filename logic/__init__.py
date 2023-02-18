@@ -12,9 +12,11 @@ class MyGame(arcade.Window):
         self.card_list = None
         arcade.set_background_color(arcade.color.AMAZON)
 
+        self.set_mouse_visible(False)
+        self.cursor_sprite = None
+
 
     from ._setup import setup
     from ._on_draw import on_draw
-    from ._controls import on_mouse_press, pull_to_top
+    from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, pull_to_top
     # Здесь основная логика
-    from ._update import update
