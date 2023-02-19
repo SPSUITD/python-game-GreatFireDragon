@@ -15,6 +15,8 @@ class MyGame(arcade.Window):
         self.set_mouse_visible(False)
         self.cursor_sprite = None
 
+        self.pile_mat_list = None
+
 
     from ._setup import setup
     from ._on_draw import on_draw
