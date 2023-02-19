@@ -14,6 +14,7 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     elif button == arcade.MOUSE_BUTTON_RIGHT:
         pass
     else:
+        self.main_theme_sound.stop(self.main_theme_player)
         import GameOverView
         view = GameOverView.GameOverView()
         self.window.show_view(view)
