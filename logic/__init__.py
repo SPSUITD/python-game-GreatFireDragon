@@ -6,16 +6,13 @@ from Card import Card
 from ._constants import *
 
 
-class MyGame(arcade.Window):
+class MyGame(arcade.View):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        self.card_list = None
+        super().__init__()
         arcade.set_background_color(arcade.color.AMAZON)
 
-        self.set_mouse_visible(False)
+        self.window.set_mouse_visible(False)
         self.cursor_sprite = None
-
-        self.pile_mat_list = None
 
 
     from ._setup import setup
