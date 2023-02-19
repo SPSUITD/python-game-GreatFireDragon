@@ -1,9 +1,8 @@
 # modules
 import arcade
 # files
-import main
-from logic.__init__ import *
-from Card.__init__ import *
+import GameView
+from Card.__init__ import Card
 from static.constants import *
 
 class InstructionView(arcade.View):
@@ -19,6 +18,6 @@ class InstructionView(arcade.View):
     
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         """ If the user presses the mouse button, start the game. """
-        game_view = GameView()
+        game_view = GameView.GameView()
         game_view.setup()
         self.window.show_view(game_view)

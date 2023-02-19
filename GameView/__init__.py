@@ -1,9 +1,8 @@
 # modules
 import arcade
 # files
-import main
-from Card.__init__ import *
-from InstructionView.__init__ import *
+from Card.__init__ import Card
+from InstructionView.__init__ import InstructionView
 from static.constants import *
 
 
