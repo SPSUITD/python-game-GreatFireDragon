@@ -1,11 +1,16 @@
 # modules
 import arcade
-from Card.__init__ import *
-from static import constants
+from static.constants import *
 
 def on_draw(self):
     self.clear()
-    
-    self.cursor_sprite.draw()   # должен быть последним!
+
+    if self.scene == SCENE_MENU:
+        self.manager.draw()
+        self.cursor_sprite.draw()   # должен быть последним!
+    elif self.scene == SCENE_GAME:
+        self.cursor_sprite.draw()   # должен быть последним!
+
+
 
     

@@ -2,7 +2,6 @@
 import arcade
 # files
 from MainGame import MainGame
-from Card.__init__ import Card
 from static.constants import *
 
 

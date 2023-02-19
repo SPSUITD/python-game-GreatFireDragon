@@ -7,4 +7,6 @@ SCREEN_TITLE = "Drag and Drop Cards"
 CARD_SCALE = 0.6
 # Размер карт
 
-# DEFAULT CURSOR
+# SCENE
+SCENE_MENU = 'SCENE_MENU'
+SCENE_GAME = 'SCENE_GAME'
