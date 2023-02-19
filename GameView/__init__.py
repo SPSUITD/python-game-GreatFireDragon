@@ -12,7 +12,7 @@ class GameView(arcade.View):
         arcade.set_background_color(arcade.color.AMAZON)
 
         self.window.set_mouse_visible(False)
-        self.cursor_sprite = None
+        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
 
 
     from ._setup import setup

@@ -6,3 +6,5 @@ SCREEN_TITLE = "Drag and Drop Cards"
 # Scaling
 CARD_SCALE = 0.6
 # Размер карт
+
+# DEFAULT CURSOR

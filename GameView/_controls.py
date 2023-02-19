@@ -2,19 +2,7 @@
 import arcade
 from Card.__init__ import *
 from static import constants
-
-def cursor_coordinates(self, x, y):
-    self.cursor_sprite.center_x = x
-    self.cursor_sprite.center_y = y
-
-def cursor_on_hover(self, x, y):
-    # HOVER
-    # cards = arcade.get_sprites_at_point((x, y), self.card_list)
-    # if len(cards) > 0:
-    #     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_2.png", 1)
-    # else:
-    #     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
-    pass
+from GeneralModule import cursor_coordinates
 
 
 def on_mouse_press(self, x, y, button, key_modifiers):
@@ -22,13 +10,15 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     # cards = arcade.get_sprites_at_point((x, y), self.card_list)
 
     if button == arcade.MOUSE_BUTTON_LEFT:
-        print("event: left button bressed")
+        pass
     elif button == arcade.MOUSE_BUTTON_RIGHT:
-        print("event: right button pressed")
+        pass
     else:
-        print("event: wheel button pressed")
+        import GameOverView
+        view = GameOverView.GameOverView()
+        self.window.show_view(view)
 
-    # КУРСОС
+    # КУРСОР
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", 1)
     cursor_coordinates(self, x, y)
 
@@ -41,7 +31,6 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     #     pass
 
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
-    cursor_on_hover(self, x, y)
     cursor_coordinates(self, x, y)
 
 def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
@@ -75,4 +64,4 @@ def pull_to_top(self, card: arcade.Sprite):
 
 def on_mouse_enter(self, x, y):
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
-    self.cursor_coordinates(self, x, y)
+    cursor_coordinates(self, x, y)

@@ -1,29 +1,33 @@
 # modules
 import arcade
 # files
-import GameView
 from Card.__init__ import Card
 from static.constants import *
+from GeneralModule import cursor_coordinates
 
 class GameOverView(arcade.View):
 
     def __init__(self):
-        """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("game_over.png")
-
-        # Reset the viewport, necessary if we have a scrolling game and we need
-        # to reset the viewport back to the start so we can see what we draw.
-        arcade.set_viewport(0, SCREEN_WIDTH - 1, 0, SCREEN_HEIGHT - 1)
+        self.texture = arcade.load_texture("images/GameOver.jpg")
+        self.window.set_mouse_visible(False)
+        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
 
     def on_draw(self):
-        """ Draw this view """
         self.clear()
-        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
-                                SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.cursor_sprite.draw()   # должен быть последним!
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
-        """ If the user presses the mouse button, re-start the game. """
-        game_view = GameView()
+        import GameView
+        game_view = GameView.GameView()
         game_view.setup()
         self.window.show_view(game_view)
+    
+    def on_mouse_motion(self, x, y, dx, dy):
+        cursor_coordinates(self, x, y)
+
+    def on_mouse_enter(self, x, y):
+        print("mouse in _ instruction view")
+        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
+        cursor_coordinates(self, x, y)
