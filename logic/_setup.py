@@ -1,8 +1,9 @@
 # modules
 import arcade
 import random
-from Card import Card
-from ._constants import *
+
+from Card.__init__ import *
+from static import constants
 from ._controls import *
 
 

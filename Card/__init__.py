@@ -3,7 +3,7 @@ import arcade
 # files
 import main
 import logic
-from logic._constants import *
+from static import constants
 
 class Card(arcade.Sprite):
     """ Card sprite """

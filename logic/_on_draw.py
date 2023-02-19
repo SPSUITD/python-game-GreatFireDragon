@@ -1,7 +1,7 @@
 # modules
 import arcade
-from Card import Card
-from logic._constants import *
+from Card.__init__ import *
+from static import constants
 
 def on_draw(self):
     self.clear()

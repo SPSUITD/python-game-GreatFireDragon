@@ -1,7 +1,7 @@
 # modules
 import arcade
-from Card import Card
-from ._constants import *
+from Card.__init__ import *
+from static import constants
 
 def cursor_coordinates(self, x, y):
     self.cursor_sprite.center_x = x
@@ -22,11 +22,11 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     # cards = arcade.get_sprites_at_point((x, y), self.card_list)
 
     if button == arcade.MOUSE_BUTTON_LEFT:
-        print("left button bressed")
+        print("event: left button bressed")
     elif button == arcade.MOUSE_BUTTON_RIGHT:
-        print("right button pressed")
+        print("event: right button pressed")
     else:
-        print("wheel button pressed")
+        print("event: wheel button pressed")
 
     # КУРСОС
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", 1)

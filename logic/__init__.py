@@ -2,11 +2,12 @@
 import arcade
 # files
 import main
-from Card import Card
-from ._constants import *
+from Card.__init__ import *
+from InstructionView.__init__ import *
+from static.constants import *
 
 
-class MyGame(arcade.View):
+class GameView(arcade.View):
     def __init__(self):
         super().__init__()
         arcade.set_background_color(arcade.color.AMAZON)
