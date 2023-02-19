@@ -17,10 +17,6 @@ def on_mouse_press(self, x, y, button, key_modifiers):
         self.set_fullscreen(not self.fullscreen)
         pass
 
-    # ГЕЙМ ОВЕР
-        # import GameOverView
-        # view = GameOverView.GameOverView()
-        # self.window.show_view(view)
 
     # КУРСОР
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", 1)
@@ -49,23 +45,13 @@ def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
     # КУРСОР
     cursor_coordinates(self, x, y)
 
-        
-
-
-
-
-
-
-
-
-def pull_to_top(self, card: arcade.Sprite):
-    # Стопка наверх
-    # self.card_list.remove(card)
-    # self.card_list.append(card)
-    pass
-
 
 
 def on_mouse_enter(self, x, y):
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
     cursor_coordinates(self, x, y)
+
+
+
+
+    

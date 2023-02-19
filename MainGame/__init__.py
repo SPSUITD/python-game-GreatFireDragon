@@ -2,16 +2,15 @@
 import arcade
 # files
 from Card.__init__ import Card
-from InstructionView.__init__ import InstructionView
 from static.constants import *
 
 
-class GameView(arcade.View):
+class  MainGame(arcade.Window):
     def __init__(self):
-        super().__init__()
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=True)
         arcade.set_background_color(arcade.color.AMAZON)
 
-        self.window.set_mouse_visible(False)
+        self.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
     
         # self.main_theme_sound = arcade.load_sound("sounds/carolOfTheBells.mp3")
