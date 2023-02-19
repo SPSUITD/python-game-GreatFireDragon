@@ -1,5 +1,9 @@
 # modules
 import arcade
+import json
+f = open("static/controls.json")
+data = json.load(f)
+
 from Card.__init__ import *
 from static import constants
 from GeneralModule import cursor_coordinates
@@ -14,7 +18,7 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     elif button == arcade.MOUSE_BUTTON_RIGHT:
         pass
     else:
-        self.set_fullscreen(not self.fullscreen)
+        
         pass
 
 
@@ -54,4 +58,13 @@ def on_mouse_enter(self, x, y):
 
 
 
-    
+def on_key_press(self, symbol, modifiers):
+    if symbol == 65480:
+        self.set_fullscreen(not self.fullscreen)
+        data["fullscreen"] = self.fullscreen
+        with open("static/controls.json", "w") as jsonFile:
+            json.dump(data, jsonFile)
+
+
+def on_key_release(self, symbol, modifiers):
+    pass

@@ -1,5 +1,8 @@
 # modules
 import arcade
+import json
+f = open("static/controls.json")
+data = json.load(f)
 # files
 from Card.__init__ import Card
 from static.constants import *
@@ -7,7 +10,7 @@ from static.constants import *
 
 class  MainGame(arcade.Window):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=True)
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=data["fullscreen"])
         arcade.set_background_color(arcade.color.AMAZON)
 
         self.set_mouse_visible(False)
@@ -17,8 +20,9 @@ class  MainGame(arcade.Window):
         # self.main_theme_player = self.main_theme_sound.play()
         # self.main_theme_sound.set_volume(0.1, self.main_theme_player)
 
+    
 
     from ._setup import setup
     from ._on_draw import on_draw
-    from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, pull_to_top
+    from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, on_key_press, on_key_release
     # Здесь основная логика
