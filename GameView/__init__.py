@@ -14,9 +14,9 @@ class GameView(arcade.View):
         self.window.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
     
-        self.main_theme_sound = arcade.load_sound("sounds/carolOfTheBells.mp3")
-        self.main_theme_player = self.main_theme_sound.play()
-        self.main_theme_sound.set_volume(0.1, self.main_theme_player)
+        # self.main_theme_sound = arcade.load_sound("sounds/carolOfTheBells.mp3")
+        # self.main_theme_player = self.main_theme_sound.play()
+        # self.main_theme_sound.set_volume(0.1, self.main_theme_player)
 
 
     from ._setup import setup
