@@ -14,8 +14,6 @@ class  MainGame(arcade.View):
         # This will get the size of the window, and set the viewport to match.
         # So if the window is 1000x1000, then so will our viewport. If
         # you want something different, then use those coordinates instead.
-        width, height = self.window.get_size()
-        self.window.set_viewport(0, width, 0, height)
         arcade.set_background_color(BG_MAINGAME)
         self.scene = SCENE_MENU
         

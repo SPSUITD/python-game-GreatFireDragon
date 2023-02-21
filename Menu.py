@@ -48,6 +48,8 @@ def create_buttons(self):
 class Menu(arcade.View):
     def __init__(self):
         super().__init__()
+        # width, height = self.window.get_size()
+        # self.window.set_viewport(0, width, 0, height)
 
         # CURSOR
         self.window.set_mouse_visible(False)
@@ -84,6 +86,9 @@ class Menu(arcade.View):
     def on_draw(self):
         self.clear()
         self.shapes.draw()          # Gradient BG
+
+
+
         self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
 
@@ -106,6 +111,30 @@ class Menu(arcade.View):
 
     def on_key_press(self, symbol, modifiers):
         on_key_basic_press(self, symbol, modifiers)
+        
+
+        # if symbol == 65480:
+        #     self.manager.clear()
+        #     left, screen_width, bottom, screen_height = self.window.get_viewport()
+
+        #     self.v_box = arcade.gui.UIBoxLayout()
+
+        #     start_button = arcade.gui.UIFlatButton(text="Start Game", width=200, style=MENU_STYLE)
+        #     self.v_box.add(start_button.with_space_around(bottom=20))
+        #     start_button.on_click = self.on_click_start
+
+        #     settings_button = arcade.gui.UIFlatButton(text="Settings", width=200, style=MENU_STYLE)
+        #     self.v_box.add(settings_button.with_space_around(bottom=20))
+        #     settings_button.on_click = self.on_click_settings
+
+        #     quit_button = QuitButton(text="Quit", width=200, style=MENU_STYLE)
+        #     self.v_box.add(quit_button.with_space_around(bottom=20))
+
+
+            # self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box))
+            # self.manager.add(arcade.gui.UILayout(300, 350, children=self.v_box))
+
+            
 
     def on_key_release(self, symbol, modifiers):
        on_key_basic_release(self, symbol, modifiers)
