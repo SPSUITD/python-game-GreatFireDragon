@@ -53,8 +53,6 @@ def create_buttons(self):
 class Menu(arcade.View):
     def __init__(self):
         super().__init__()
-        # width, height = self.window.get_size()
-        # self.window.set_viewport(0, width, 0, height)
 
         # CURSOR
         self.window.set_mouse_visible(False)
@@ -69,7 +67,7 @@ class Menu(arcade.View):
         self.shapes = arcade.ShapeElementList()
         rect = arcade.create_rectangle_filled_with_colors(GRADIENT_POINTS, GRADIENT_COLOR)
         self.shapes.append(rect)
-        # GRADIENT BG
+        
 
         create_buttons(self)
         
@@ -83,12 +81,12 @@ class Menu(arcade.View):
         self.window.show_view(view)
 
     def on_click_settings(self, event):
-        self.manager.clear()
+        self.manager.disable()
         view = Settings()
         self.window.show_view(view)
 
     def on_click_rules(self, event):
-        self.manager.clear()
+        self.manager.disable()
         view = Rules()
         self.window.show_view(view)
 

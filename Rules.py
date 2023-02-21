@@ -56,6 +56,7 @@ class Rules(arcade.View):
     def on_click_get_back(self, event):
         self.manager.clear()
         view = Menu.Menu()
+        view.manager.enable()
         self.window.show_view(view)
 
 
