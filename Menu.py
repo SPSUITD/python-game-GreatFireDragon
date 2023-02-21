@@ -5,6 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 
+from MainGame import MainGame
 from static.constants import *
 from GeneralModule import cursor_coordinates
 
@@ -12,11 +13,7 @@ from GeneralModule import cursor_coordinates
 
 
 
-class StartButton(arcade.gui.UIFlatButton):
-    def on_click(self, event: arcade.gui.UIOnClickEvent):
-        game_view = MainGame()
-        game_view.setup()
-        self.window.show_view(game_view)
+
     
 class SettingsButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
@@ -45,11 +42,12 @@ class Menu(arcade.View):
         # Buttons
         self.v_box = arcade.gui.UIBoxLayout()
 
-        start_button = StartButton(text="Start Game", width=200, style=MENU_STYLE)
+        start_button = arcade.gui.UIFlatButton(text="Start Game", width=200, style=MENU_STYLE)
         self.v_box.add(start_button.with_space_around(bottom=20))
 
         settings_button = SettingsButton(text="Settings", width=200, style=MENU_STYLE)
         self.v_box.add(settings_button.with_space_around(bottom=20))
+        start_button.on_click = self.on_click_start
 
         quit_button = QuitButton(text="Quit", width=200, style=MENU_STYLE)
         self.v_box.add(quit_button.with_space_around(bottom=20))
@@ -57,6 +55,12 @@ class Menu(arcade.View):
         self.manager.add(
             arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box)
             )
+
+    def on_click_start(self, event):
+        self.manager.clear()
+        game_view = MainGame()
+        game_view.setup()
+        self.window.show_view(game_view)
 
 
     def on_draw(self):

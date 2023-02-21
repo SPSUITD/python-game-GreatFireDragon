@@ -14,19 +14,19 @@ class  MainGame(arcade.View):
         # This will get the size of the window, and set the viewport to match.
         # So if the window is 1000x1000, then so will our viewport. If
         # you want something different, then use those coordinates instead.
-        width, height = self.get_size()
-        self.set_viewport(0, width, 0, height)
+        width, height = self.window.get_size()
+        self.window.set_viewport(0, width, 0, height)
+        arcade.set_background_color(BG_MAINGAME)
         self.scene = SCENE_MENU
         
-
         # CURSOR
-        self.set_mouse_visible(False)
+        self.window.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
     
         # SOUNDS
-        # self.main_theme_sound = arcade.load_sound("sounds/carolOfTheBells.mp3")
-        # self.main_theme_player = self.main_theme_sound.play()
-        # self.main_theme_sound.set_volume(0.1, self.main_theme_player)
+        self.main_theme_sound = arcade.load_sound("sounds/carolOfTheBells.mp3")
+        self.main_theme_player = self.main_theme_sound.play()
+        self.main_theme_sound.set_volume(0.1, self.main_theme_player)
 
     def set_scene(cont_scene):
         self.scene = cont_scene

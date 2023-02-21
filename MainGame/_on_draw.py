@@ -4,7 +4,7 @@ from static.constants import *
 
 def on_draw(self):
     self.clear()
-    left, screen_width, bottom, screen_height = self.get_viewport()
+    left, screen_width, bottom, screen_height = self.window.get_viewport()
 
     # if self.scene == SCENE_MENU:
     #     self.manager.draw()
