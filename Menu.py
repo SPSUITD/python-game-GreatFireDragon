@@ -7,6 +7,7 @@ data = json.load(f)
 
 from MainGame import MainGame
 from Settings import Settings
+from Rules import Rules
 from static.constants import *
 from GeneralModule import cursor_coordinates
 
@@ -32,6 +33,10 @@ def create_buttons(self):
     start_button = arcade.gui.UIFlatButton(text="Start Game", width=200, style=MENU_STYLE)
     self.v_box.add(start_button.with_space_around(bottom=20))
     start_button.on_click = self.on_click_start
+
+    rules_button = arcade.gui.UIFlatButton(text="Rules", width=200, style=MENU_STYLE)
+    self.v_box.add(rules_button.with_space_around(bottom=20))
+    rules_button.on_click = self.on_click_rules
 
     settings_button = arcade.gui.UIFlatButton(text="Settings", width=200, style=MENU_STYLE)
     self.v_box.add(settings_button.with_space_around(bottom=20))
@@ -82,6 +87,11 @@ class Menu(arcade.View):
         view = Settings()
         self.window.show_view(view)
 
+    def on_click_rules(self, event):
+        self.manager.clear()
+        view = Rules()
+        self.window.show_view(view)
+
 
     def on_draw(self):
         self.clear()
@@ -111,7 +121,7 @@ class Menu(arcade.View):
 
     def on_key_press(self, symbol, modifiers):
         on_key_basic_press(self, symbol, modifiers)
-        
+
 
         # if symbol == 65480:
         #     self.manager.clear()
