@@ -63,9 +63,13 @@ def on_key_press(self, symbol, modifiers):
     # f11 для смены режима fullscreen
     if symbol == 65480:
         self.set_fullscreen(not self.fullscreen)
-        data["fullscreen"] = self.fullscreen
-        with open("static/controls.json", "w") as jsonFile:
+        data["fullscreen"] = self.fullscreen                    # Также запись состояния в JSON
+        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
+            
+        self.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
+
+        
 
 
 def on_key_release(self, symbol, modifiers):

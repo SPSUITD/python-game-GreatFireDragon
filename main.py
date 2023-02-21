@@ -2,13 +2,15 @@
 import arcade
 # files
 from MainGame import MainGame
+from Menu import Menu
 from static.constants import *
 
 
 
 def main():
-    window = MainGame()
-    window.setup()
+    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    start_view = Menu()
+    window.show_view(start_view)
     arcade.run()
 
 
