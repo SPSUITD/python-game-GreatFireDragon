@@ -41,7 +41,17 @@ class Menu(arcade.View):
         #  MANAGER
         self.manager = arcade.gui.UIManager()
         self.manager.enable()
-        arcade.set_background_color(BG_MENU)
+        arcade.set_background_color(BG_MENU)        # ATAVISM
+
+        # GRADIENT BG
+        self.shapes = arcade.ShapeElementList()
+        color1 = (215, 214, 165)
+        color2 = (219, 166, 123)
+        points = (0, 0), (SCREEN_WIDTH, 0), (SCREEN_WIDTH, SCREEN_HEIGHT), (0, SCREEN_HEIGHT)
+        colors = (color1, color1, color2, color2)
+        rect = arcade.create_rectangle_filled_with_colors(points, colors)
+        self.shapes.append(rect)
+        # GRADIENT BG
 
         # Buttons
         self.v_box = arcade.gui.UIBoxLayout()
@@ -69,7 +79,8 @@ class Menu(arcade.View):
 
     def on_draw(self):
         self.clear()
-        self.manager.draw()
+        self.shapes.draw()          # Gradient BG
+        self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
 
    

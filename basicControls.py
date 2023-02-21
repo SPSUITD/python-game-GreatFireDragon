@@ -1,4 +1,8 @@
 import arcade
+import json
+f = open("static/controls.json")
+data = json.load(f)
+
 from static.constants import *
 from GeneralModule import cursor_coordinates, cursor_on_hover
 
@@ -30,7 +34,7 @@ def on_key_basic_press(self, symbol, modifiers):
         with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
             
-        self.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
+        self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
 
 def on_key_basic_release(self, symbol, modifiers):
     pass
