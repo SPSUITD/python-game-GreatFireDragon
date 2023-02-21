@@ -26,6 +26,11 @@ MENU_STYLE = {
     "font_color_pressed": arcade.color.RED,
 }
 
+color1 = (215, 214, 165)
+color2 = (219, 166, 123)
+GRADIENT_POINTS = (0, 0), (SCREEN_WIDTH, 0), (SCREEN_WIDTH, SCREEN_HEIGHT), (0, SCREEN_HEIGHT)
+GRADIENT_COLOR = (color1, color1, color2, color2)
+
 # SCENE
 SCENE_MENU = 0
 SCENE_GAME = 1

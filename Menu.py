@@ -45,11 +45,7 @@ class Menu(arcade.View):
 
         # GRADIENT BG
         self.shapes = arcade.ShapeElementList()
-        color1 = (215, 214, 165)
-        color2 = (219, 166, 123)
-        points = (0, 0), (SCREEN_WIDTH, 0), (SCREEN_WIDTH, SCREEN_HEIGHT), (0, SCREEN_HEIGHT)
-        colors = (color1, color1, color2, color2)
-        rect = arcade.create_rectangle_filled_with_colors(points, colors)
+        rect = arcade.create_rectangle_filled_with_colors(GRADIENT_POINTS, GRADIENT_COLOR)
         self.shapes.append(rect)
         # GRADIENT BG
 
