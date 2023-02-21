@@ -9,5 +9,3 @@ def cursor_on_hover(self, x, y):
     # HOVER
     pass
 
-
-# minor improvements

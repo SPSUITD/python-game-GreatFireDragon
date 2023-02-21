@@ -7,7 +7,6 @@ data = json.load(f)
 from static.constants import *
 from GeneralModule import cursor_coordinates
 
-# minor improvements
 
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):

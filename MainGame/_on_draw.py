@@ -12,5 +12,3 @@ def on_draw(self):
         self.cursor_sprite.draw()   # должен быть последним!
 
 
-
-    # minor improvements

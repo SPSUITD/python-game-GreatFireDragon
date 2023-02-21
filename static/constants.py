@@ -10,5 +10,3 @@ CARD_SCALE = 0.6
 # SCENE
 SCENE_MENU = 'SCENE_MENU'
 SCENE_GAME = 'SCENE_GAME'
-
-# minor improvements
