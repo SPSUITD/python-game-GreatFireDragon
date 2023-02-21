@@ -1,12 +1,13 @@
 import arcade
 import arcade.gui
 
-# Экран и название
+# Главная информация
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 576
 SCREEN_TITLE = "Drag and Drop Cards"
 BG_MAINGAME = arcade.color.AMAZON
 BG_MENU = arcade.color.DARK_BLUE_GRAY
+FONT = "Kenney Blocks"
 
 # Scaling
 CARD_SCALE = 0.6
@@ -30,6 +31,9 @@ color1 = (215, 214, 165)
 color2 = (219, 166, 123)
 GRADIENT_POINTS = (0, 0), (SCREEN_WIDTH, 0), (SCREEN_WIDTH, SCREEN_HEIGHT), (0, SCREEN_HEIGHT)
 GRADIENT_COLOR = (color1, color1, color2, color2)
+
+# SETTINGS
+SETTIGNS_FONT_SIZE = 18
 
 # SCENE
 SCENE_MENU = 0

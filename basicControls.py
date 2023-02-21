@@ -36,6 +36,7 @@ def on_key_basic_press(self, symbol, modifiers):
             
         self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
 
+
 def on_key_basic_release(self, symbol, modifiers):
     pass
 

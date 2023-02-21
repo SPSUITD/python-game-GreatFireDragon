@@ -6,6 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from MainGame import MainGame
+from Settings import Settings
 from static.constants import *
 from GeneralModule import cursor_coordinates
 
@@ -19,15 +20,29 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 
 
     
-class SettingsButton(arcade.gui.UIFlatButton):
-    def on_click(self, event: arcade.gui.UIOnClickEvent):
-        print("settings button clicked")
-        # arcade.exit()
         
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
         print("quit button clicked")
         arcade.exit()
+
+def create_buttons(self):
+    self.v_box = arcade.gui.UIBoxLayout()
+
+    start_button = arcade.gui.UIFlatButton(text="Start Game", width=200, style=MENU_STYLE)
+    self.v_box.add(start_button.with_space_around(bottom=20))
+    start_button.on_click = self.on_click_start
+
+    settings_button = arcade.gui.UIFlatButton(text="Settings", width=200, style=MENU_STYLE)
+    self.v_box.add(settings_button.with_space_around(bottom=20))
+    settings_button.on_click = self.on_click_settings
+
+    quit_button = QuitButton(text="Quit", width=200, style=MENU_STYLE)
+    self.v_box.add(quit_button.with_space_around(bottom=20))
+
+    self.manager.add(
+        arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box)
+        )
 
 #  MENU -----------------------------------------------------------
 class Menu(arcade.View):
@@ -49,28 +64,21 @@ class Menu(arcade.View):
         self.shapes.append(rect)
         # GRADIENT BG
 
-        # Buttons
-        self.v_box = arcade.gui.UIBoxLayout()
+        create_buttons(self)
+        
 
-        start_button = arcade.gui.UIFlatButton(text="Start Game", width=200, style=MENU_STYLE)
-        self.v_box.add(start_button.with_space_around(bottom=20))
-
-        settings_button = SettingsButton(text="Settings", width=200, style=MENU_STYLE)
-        self.v_box.add(settings_button.with_space_around(bottom=20))
-        start_button.on_click = self.on_click_start
-
-        quit_button = QuitButton(text="Quit", width=200, style=MENU_STYLE)
-        self.v_box.add(quit_button.with_space_around(bottom=20))
-
-        self.manager.add(
-            arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box)
-            )
+   
 
     def on_click_start(self, event):
         self.manager.clear()
-        game_view = MainGame()
-        game_view.setup()
-        self.window.show_view(game_view)
+        view = MainGame()
+        view.setup()
+        self.window.show_view(view)
+
+    def on_click_settings(self, event):
+        self.manager.clear()
+        view = Settings()
+        self.window.show_view(view)
 
 
     def on_draw(self):
