@@ -24,8 +24,8 @@ def create_buttons(self):
     self.v_box.add(get_back_button.with_space_around(bottom=20))
     get_back_button.on_click = self.on_click_get_back
 
-   
-   
+
+
 
     ui_slider = UISlider(value=data["volume"]*100, width=SCREEN_WIDTH*0.9, height=50, style=SETTINGS_SLIDER_STYLE)
     label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=30, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
@@ -36,10 +36,8 @@ def create_buttons(self):
         data["volume"] = ui_slider.value / 100
         with open("static/controls.json", "w") as jsonFile:
             json.dump(data, jsonFile)
-        print("on change: ", data["volume"])
-
         label.fit_content()
-        
+
     self.manager.add(arcade.gui.UIAnchorWidget(child=ui_slider))
     self.manager.add(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50))
     self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
@@ -65,7 +63,7 @@ class Settings(arcade.View):
         # GRADIENT BG
 
         create_buttons(self)
-        
+
 
 
 

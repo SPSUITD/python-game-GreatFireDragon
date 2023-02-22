@@ -4,12 +4,10 @@ from static.constants import *
 
 def on_draw(self):
     self.clear()
-    left, screen_width, bottom, screen_height = self.window.get_viewport()
+    # left, screen_width, bottom, screen_height = self.window.get_viewport()
+    self.tile_map.sprite_lists["PixelCatsFree"].draw()
 
-    # if self.scene == SCENE_MENU:
-    #     self.manager.draw()
-    #     self.cursor_sprite.draw()   # должен быть последним!
-    # elif self.scene == SCENE_GAME:
+
     self.cursor_sprite.draw()   # должен быть последним!
 
 

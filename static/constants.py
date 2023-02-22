@@ -61,6 +61,4 @@ SETTINGS_SLIDER_STYLE = {
     "pressed_unfilled_bar":  arcade.color.BLOND
 }
 
-# SCENE
-SCENE_MENU = 0
-SCENE_GAME = 1
+
