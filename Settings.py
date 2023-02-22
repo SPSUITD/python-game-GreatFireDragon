@@ -27,17 +27,19 @@ def create_buttons(self):
    
    
 
-    ui_slider = UISlider(value=10, width=SCREEN_WIDTH*0.9, height=50, style=SETTINGS_SLIDER_STYLE)
+    ui_slider = UISlider(value=data["volume"]*100, width=SCREEN_WIDTH*0.9, height=50, style=SETTINGS_SLIDER_STYLE)
     label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=30, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
 
     @ui_slider.event()
     def on_change(event: arcade.gui.UIOnChangeEvent):
         label.text = f"{ui_slider.value:02.0f}"
-        label.fit_content()
         data["volume"] = ui_slider.value / 100
         with open("static/controls.json", "w") as jsonFile:
             json.dump(data, jsonFile)
+        print("on change: ", data["volume"])
 
+        label.fit_content()
+        
     self.manager.add(arcade.gui.UIAnchorWidget(child=ui_slider))
     self.manager.add(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50))
     self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
