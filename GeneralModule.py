@@ -7,5 +7,6 @@ def cursor_coordinates(self, x, y):
 
 def cursor_on_hover(self, x, y):
     # HOVER
+    # I need to do something here
     pass
 

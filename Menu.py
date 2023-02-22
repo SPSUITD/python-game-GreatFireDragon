@@ -95,7 +95,7 @@ class Menu(arcade.View):
         self.clear()
         self.shapes.draw()          # Gradient BG
 
-
+        
 
         self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
