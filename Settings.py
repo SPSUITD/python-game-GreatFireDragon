@@ -1,6 +1,7 @@
 # modules
 import arcade
 import arcade.gui
+from arcade.experimental.uislider import UISlider
 import json
 f = open("static/controls.json")
 data = json.load(f)
@@ -23,10 +24,23 @@ def create_buttons(self):
     self.v_box.add(get_back_button.with_space_around(bottom=20))
     get_back_button.on_click = self.on_click_get_back
 
+   
+   
 
-    self.manager.add(
-        arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box)
-        )
+    ui_slider = UISlider(value=10, width=SCREEN_WIDTH*0.9, height=50, style=SETTINGS_SLIDER_STYLE)
+    label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=30, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
+
+    @ui_slider.event()
+    def on_change(event: arcade.gui.UIOnChangeEvent):
+        label.text = f"{ui_slider.value:02.0f}"
+        label.fit_content()
+        data["volume"] = ui_slider.value / 100
+        with open("static/controls.json", "w") as jsonFile:
+            json.dump(data, jsonFile)
+
+    self.manager.add(arcade.gui.UIAnchorWidget(child=ui_slider))
+    self.manager.add(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50))
+    self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
 
 #  MENU -----------------------------------------------------------
 class Settings(arcade.View):
@@ -62,21 +76,9 @@ class Settings(arcade.View):
 
     def on_draw(self):
         self.clear()
-        self.shapes.draw()          # Gradient BG
-
-
-        left, screen_width, bottom, screen_height = self.window.get_viewport()
-        arcade.draw_text("Congue inceptos orci quam mauris per vitae maecenas.",
-                         screen_width // 2, screen_height // 2 + 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("Dapibus sociosqu tristique hymenaeos bibendum commodo",
-                         screen_width // 2, screen_height // 2 + 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("semper nunc cum accumsan velit class commodo.",
-                         screen_width // 2, screen_height // 2 - 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
-                         screen_width // 2, screen_height // 2 - 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-
-
-
+        self.shapes.draw()          # Gradient BG 
+        arcade.draw_text("Adjust the slider to change music volume: ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
         self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
 
