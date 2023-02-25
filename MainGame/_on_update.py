@@ -2,10 +2,5 @@
 import arcade
 from static.constants import *
 
-
-
-def setup(self):
+def on_update(self, delta_time):
     pass
-
-
-

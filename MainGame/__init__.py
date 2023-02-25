@@ -25,6 +25,7 @@ class  MainGame(arcade.View):
 
     
     from ._setup import setup
+    from ._on_update import on_update
     from ._on_draw import on_draw
     from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, on_mouse_enter, on_mouse_leave, on_key_press, on_key_release
     # Здесь основная логика
