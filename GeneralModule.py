@@ -1,5 +1,6 @@
 import arcade
 import arcade.gui
+from pyglet.math import Vec2
 from static.constants import *
 
 def cursor_coordinates(self, x, y):

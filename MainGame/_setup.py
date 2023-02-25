@@ -29,7 +29,7 @@ def setup(self):
         fruit = arcade.Sprite(f"{path}{i}", hit_box_detail=3, hit_box_algorithm='Simple')
         # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
         fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-        fruit.center_y = 50
+        fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
         fruit.scale = 0.3
         self.fruit_list.append(fruit)
 
@@ -37,6 +37,27 @@ def setup(self):
     self.hoop.center_x = SCREEN_WIDTH/1.1
     self.hoop.center_y = SCREEN_HEIGHT/1.2
     self.hoop.scale = HOOP_SCALE
+
+
+    # PHISICS ENGINE
+    damping = DEFAULT_DAMPING
+    gravity = (0, -GRAVITY)
+    self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
+
+    # ADD FRUITS TO PHYSICS ENGINE
+    for i in range(len(self.fruit_list)):
+        self.physics_engine.add_sprite(self.fruit_list[i],
+                                        friction=FRUIT_FRICTION,
+                                        mass=FRUIT_MASS,
+                                        moment=arcade.PymunkPhysicsEngine.MOMENT_INF,
+                                        collision_type="player",
+                                        max_horizontal_velocity=FRUIT_MAX_HORIZONTAL_SPEED,
+                                        max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
+
+        self.physics_engine.apply_impulse(self.fruit_list[i], (0, 1000))
+
+
+
 
 
 

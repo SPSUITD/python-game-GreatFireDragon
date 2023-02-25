@@ -34,6 +34,9 @@ class  MainGame(arcade.View):
         self.held_fruits = None
         self.held_fruits_original_position = None
 
+        # Physics engine
+        self.physics_engine = arcade.PymunkPhysicsEngine
+
     
         # SOUNDS
         # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")
