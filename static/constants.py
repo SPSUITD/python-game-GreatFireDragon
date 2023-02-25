@@ -11,6 +11,7 @@ FONT = "Kenney Blocks"
 
 # Scaling
 CURSOR_SCALE = 1
+HOOP_SCALE = 0.2
 
 # MENU
 MENU_STYLE = {
