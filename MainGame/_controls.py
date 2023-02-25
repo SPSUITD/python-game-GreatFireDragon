@@ -15,9 +15,11 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 # CONTROLS -----------------------------------------------------
 def on_mouse_press(self, x, y, button, key_modifiers):
     on_mouse_basic_press(self, x, y, button, key_modifiers)
+    # self.filter_on = False
 
 def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     on_mouse_basic_release(self, x, y, button, modifiers)
+    # self.filter_on = True
 
 def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
     on_mouse_basic_motion(self, x, y, dx, dy)

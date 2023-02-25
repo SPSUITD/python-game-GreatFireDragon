@@ -1,6 +1,8 @@
 # modules
 import arcade
 import arcade.gui
+from arcade.experimental.crt_filter import CRTFilter
+from pyglet.math import Vec2
 import json
 # files
 from static.constants import *
@@ -10,6 +12,21 @@ class  MainGame(arcade.View):
     def __init__(self):
         super().__init__()
         arcade.set_background_color(BG_MAINGAME)
+
+        # CRT filter
+        self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
+                                    resolution_down_scale=6.0,
+                                    hard_scan=-8.0, hard_pix=-3.0,
+                                    display_warp = Vec2(1.0 / 32.0, 1.0 / 24.0),
+                                    mask_dark=0.5, mask_light=1.5)
+        self.filter_on = False
+        self.sprite_list = arcade.SpriteList()
+
+        full = arcade.Sprite("images/GameOver.jpg")
+        full.center_x = SCREEN_WIDTH / 2
+        full.center_y = SCREEN_HEIGHT / 2
+        full.scale = SCREEN_WIDTH / full.width
+        self.sprite_list.append(full)
         
         # CURSOR
         self.window.set_mouse_visible(False)
