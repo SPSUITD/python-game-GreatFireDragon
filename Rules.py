@@ -35,7 +35,7 @@ class Rules(arcade.View):
 
         # CURSOR
         self.window.set_mouse_visible(False)
-        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
+        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
 
         #  MANAGER
         self.manager = arcade.gui.UIManager()

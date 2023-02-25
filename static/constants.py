@@ -10,7 +10,7 @@ BG_MENU = arcade.color.DARK_BLUE_GRAY
 FONT = "Kenney Blocks"
 
 # Scaling
-CARD_SCALE = 0.6
+CURSOR_SCALE = 1
 
 # MENU
 MENU_STYLE = {

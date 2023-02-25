@@ -8,7 +8,7 @@ def on_draw(self):
         self.crt_filter.use()
         self.crt_filter.clear()
 
-        self.sprite_list.draw()
+        self.fruit_list.draw()
         self.cursor_sprite.draw()   # должен быть последним!
 
         self.window.use()
@@ -17,8 +17,8 @@ def on_draw(self):
     else:
         self.window.use()
         self.clear()
-        
-        self.sprite_list.draw()
+
+        self.fruit_list.draw()
         self.cursor_sprite.draw()
 
 

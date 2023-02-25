@@ -9,18 +9,18 @@ from GeneralModule import cursor_coordinates, cursor_on_hover
 
 
 def on_mouse_basic_press(self, x, y, button, key_modifiers):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", 1)
+    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", CURSOR_SCALE)
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_release(self, x: float, y: float, button: int, modifiers: int):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
+    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_motion(self, x: float, y: float, dx: float, dy: float):
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_enter(self, x, y):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
+    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_leave(self, x, y):

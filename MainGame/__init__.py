@@ -1,9 +1,11 @@
 # modules
 import arcade
-import arcade.gui
+import random
 from arcade.experimental.crt_filter import CRTFilter
 from pyglet.math import Vec2
+from arcade.experimental import Shadertoy
 import json
+import os
 # files
 from static.constants import *
 
@@ -15,22 +17,43 @@ class  MainGame(arcade.View):
 
         # CRT filter
         self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                    resolution_down_scale=6.0,
+                                    resolution_down_scale=3.0,
                                     hard_scan=-8.0, hard_pix=-3.0,
-                                    display_warp = Vec2(1.0 / 32.0, 1.0 / 24.0),
+                                    display_warp = Vec2(1.0 / 8.0, 1.0 / 8.0),
                                     mask_dark=0.5, mask_light=1.5)
         self.filter_on = False
-        self.sprite_list = arcade.SpriteList()
 
-        full = arcade.Sprite("images/GameOver.jpg")
-        full.center_x = SCREEN_WIDTH / 2
-        full.center_y = SCREEN_HEIGHT / 2
-        full.scale = SCREEN_WIDTH / full.width
-        self.sprite_list.append(full)
-        
+        self.fruit_list = arcade.SpriteList()
+        # LITTLE 16x16 FRUITS FROM STARDEW VALLEY
+        # for i in range(3):
+        #     for j in range(10):
+        #         for k in range(10):
+        #             try:
+        #                 fruit = arcade.Sprite(f"images/tile{i}{j}{k}.png")
+        #                 fruit.center_x = SCREEN_WIDTH / 2
+        #                 fruit.center_y = 2
+        #                 fruit.scale = 6
+        #                 self.fruit_list.append(fruit)
+        #             except Exception: break
+
+        # BIG FRUITS
+        path = "fruits/"
+        dir_list = os.listdir(path)
+        for i in dir_list: 
+            fruit = arcade.Sprite(f"{path}{i}")
+            fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
+            fruit.center_y = 50
+            fruit.scale = 0.3
+            self.fruit_list.append(fruit)
+            
         # CURSOR
         self.window.set_mouse_visible(False)
-        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
+        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
+
+
+        # DRAG AND DROP
+        self.held_fruits = []
+        self.held_fruits_original_position = []
 
     
         # SOUNDS

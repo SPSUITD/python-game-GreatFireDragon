@@ -5,7 +5,8 @@ from static.constants import *
 
 
 def setup(self):
-    pass
+    self.held_fruits = []
+    self.held_fruits_original_position = []
 
 
 
