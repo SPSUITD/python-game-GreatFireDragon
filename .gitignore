@@ -2,8 +2,7 @@
 Tiled/*
 
 # картинки
-images/*
-fruits/*
+miniFruits/*
 
 # Файлы VSCodium
 __pycache__/*
