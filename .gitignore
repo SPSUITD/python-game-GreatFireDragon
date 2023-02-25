@@ -7,3 +7,8 @@ miniFruits/*
 # Файлы VSCodium
 __pycache__/*
 *.pyc
+
+
+# Файлы установки
+main.build/*
+main.dist/*
