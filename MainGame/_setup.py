@@ -26,12 +26,21 @@ def setup(self):
     path = "fruits/"
     dir_list = os.listdir(path)
     for i in dir_list: 
-        fruit = arcade.Sprite(f"{path}{i}", hit_box_detail=3, hit_box_algorithm='Simple')
+        fruit = arcade.Sprite(f"{path}{i}")
         # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
         fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
         fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
         fruit.scale = 0.3
         self.fruit_list.append(fruit)
+
+
+
+    # COLLISION TESTS
+    test_fruit = arcade.Sprite("fruits/orange.png")
+    test_fruit.center_x = SCREEN_WIDTH/2
+    test_fruit.center_y = SCREEN_HEIGHT/2
+    self.fruit_list.append(test_fruit)
+    
 
     # HOOP
     self.hoop.center_x = SCREEN_WIDTH/1.1
@@ -55,6 +64,10 @@ def setup(self):
                                         max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
 
         self.physics_engine.apply_impulse(self.fruit_list[i], (0, 1000))
+
+
+
+
 
 
 

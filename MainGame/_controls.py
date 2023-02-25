@@ -20,10 +20,10 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     if len(fruits_at_cursor) > 0:
         primary_fruit = fruits_at_cursor[-1]
 
-        try:
+        if not self.removed:
             self.physics_engine.remove_sprite(primary_fruit)
-        except Exception():
-            pass
+            self.removed = True
+
 
         self.held_fruits = [primary_fruit]
         self.held_fruits_original_position = [self.held_fruits[0].position]
@@ -36,7 +36,7 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     if len(self.held_fruits) == 0:
         return
 
-    
+    self.removed = False
     self.physics_engine.add_sprite(self.held_fruits[0])
     self.held_fruits = []
     cursor_hover_fruit(self, x, y)

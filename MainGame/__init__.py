@@ -22,8 +22,9 @@ class  MainGame(arcade.View):
         self.filter_on = False
         
         # OBJECTS
-        self.fruit_list = arcade.SpriteList()
-        self.hoop = arcade.Sprite("images/hoop.png", hit_box_algorithm='Simple', hit_box_detail=3)
+        self.fruit_list = arcade.SpriteList(use_spatial_hash=True)
+        self.hoop = arcade.Sprite("images/hoop.png", hit_box_algorithm='Detailed')
+        self.removed = False
             
         # CURSOR
         self.window.set_mouse_visible(False)
