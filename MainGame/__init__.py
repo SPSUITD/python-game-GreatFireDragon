@@ -9,16 +9,12 @@ class  MainGame(arcade.View):
 
     def __init__(self):
         super().__init__()
-        # This will get the size of the window, and set the viewport to match.
-        # So if the window is 1000x1000, then so will our viewport. If
-        # you want something different, then use those coordinates instead.
         arcade.set_background_color(BG_MAINGAME)
         
         # CURSOR
         self.window.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", 1)
 
-        self.tile_map = None
     
         # SOUNDS
         # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")
