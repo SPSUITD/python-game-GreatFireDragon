@@ -12,6 +12,7 @@ def main():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=data["fullscreen"])
     # start_view = Menu()
     start_view = MainGame()
+    start_view.setup()
     window.show_view(start_view)
     arcade.run()
 

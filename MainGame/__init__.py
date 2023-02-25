@@ -1,11 +1,9 @@
 # modules
 import arcade
-import random
 from arcade.experimental.crt_filter import CRTFilter
 from pyglet.math import Vec2
 from arcade.experimental import Shadertoy
 import json
-import os
 # files
 from static.constants import *
 
@@ -22,29 +20,9 @@ class  MainGame(arcade.View):
                                     display_warp = Vec2(1.0 / 8.0, 1.0 / 8.0),
                                     mask_dark=0.5, mask_light=1.5)
         self.filter_on = False
-
+        
+        # FRUITS SPRITE LIST
         self.fruit_list = arcade.SpriteList()
-        # LITTLE 16x16 FRUITS FROM STARDEW VALLEY
-        # for i in range(3):
-        #     for j in range(10):
-        #         for k in range(10):
-        #             try:
-        #                 fruit = arcade.Sprite(f"images/tile{i}{j}{k}.png")
-        #                 fruit.center_x = SCREEN_WIDTH / 2
-        #                 fruit.center_y = 2
-        #                 fruit.scale = 6
-        #                 self.fruit_list.append(fruit)
-        #             except Exception: break
-
-        # BIG FRUITS
-        path = "fruits/"
-        dir_list = os.listdir(path)
-        for i in dir_list: 
-            fruit = arcade.Sprite(f"{path}{i}")
-            fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
-            fruit.center_y = 50
-            fruit.scale = 0.3
-            self.fruit_list.append(fruit)
             
         # CURSOR
         self.window.set_mouse_visible(False)
@@ -52,8 +30,8 @@ class  MainGame(arcade.View):
 
 
         # DRAG AND DROP
-        self.held_fruits = []
-        self.held_fruits_original_position = []
+        self.held_fruits = None
+        self.held_fruits_original_position = None
 
     
         # SOUNDS
