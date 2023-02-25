@@ -5,7 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
-from GeneralModule import cursor_coordinates, cursor_on_hover, pull_to_top
+from GeneralModule import cursor_coordinates, cursor_hover_fruit, pull_to_top
 
 
 
@@ -25,16 +25,18 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
 def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     on_mouse_basic_release(self, x, y, button, modifiers)
+    
 
     if len(self.held_fruits) == 0:
         return
 
     self.held_fruits = []
+    cursor_hover_fruit(self, x, y)
 
 
 def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
     on_mouse_basic_motion(self, x, y, dx, dy)
-    cursor_on_hover(self, x, y)
+    cursor_hover_fruit(self, x, y)
 
     for fruit in self.held_fruits:
         fruit.center_x += dx

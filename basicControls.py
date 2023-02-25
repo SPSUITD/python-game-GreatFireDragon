@@ -4,7 +4,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import cursor_coordinates, cursor_on_hover
+from GeneralModule import cursor_coordinates, cursor_hover_fruit
 
 
 
