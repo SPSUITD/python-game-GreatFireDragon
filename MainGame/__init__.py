@@ -38,6 +38,8 @@ class  MainGame(arcade.View):
         # Physics engine
         self.physics_engine = arcade.PymunkPhysicsEngine
 
+        self.fruit_impulse = 1000
+
     
         # SOUNDS
         # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")

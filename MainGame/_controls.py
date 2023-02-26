@@ -60,6 +60,11 @@ def on_key_press(self, symbol, modifiers):
     on_key_basic_press(self, symbol, modifiers)
     if symbol == arcade.key.P:
         self.filter_on = not self.filter_on
+    if symbol == arcade.key.UP:
+        self.fruit_impulse += 50
+    if symbol == arcade.key.DOWN:
+        self.fruit_impulse -= 50
+    print(self.fruit_impulse)
         
 def on_key_release(self, symbol, modifiers):
     on_key_basic_release(self, symbol, modifiers)
