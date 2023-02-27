@@ -21,6 +21,11 @@ def setup(self):
     #                 self.fruit_list.append(fruit)
     #             except Exception: break
 
+    # PHISICS ENGINE
+    damping = DEFAULT_DAMPING
+    gravity = (0, -GRAVITY)
+    self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
+
     # BIG FRUITS
     fruit_path = "fruits/"
     dir_list = os.listdir(fruit_path)
@@ -32,6 +37,7 @@ def setup(self):
         fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
         fruit.scale = 0.3
         self.fruit_list.append(fruit)
+        
 
 
 
@@ -42,6 +48,7 @@ def setup(self):
     test_fruit.scale = 0.5
     self.fruit_list.append(test_fruit)
     
+    
 
     # HOOP
     self.hoop.center_x = SCREEN_WIDTH/1.1
@@ -49,10 +56,7 @@ def setup(self):
     self.hoop.scale = HOOP_SCALE
 
 
-    # PHISICS ENGINE
-    damping = DEFAULT_DAMPING
-    gravity = (0, -GRAVITY)
-    self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
+    
 
     # ADD FRUITS TO PHYSICS ENGINE
     for i in range(len(self.fruit_list)):
@@ -60,7 +64,7 @@ def setup(self):
                                         friction=FRUIT_FRICTION,
                                         mass=FRUIT_MASS,
                                         moment=arcade.PymunkPhysicsEngine.MOMENT_INF,
-                                        collision_type="player",
+                                        collision_type=f"fruit{i}",
                                         max_horizontal_velocity=FRUIT_MAX_HORIZONTAL_SPEED,
                                         max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
 
