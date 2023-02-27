@@ -37,7 +37,7 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
 
     self.removed = False
     self.physics_engine.add_sprite(self.held_fruits[0])
-    self.physics_engine.set_velocity(self.held_fruits[0], (100,0))
+    self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
     self.held_fruits = []
     cursor_hover_fruit(self, x, y)
 
@@ -49,6 +49,9 @@ def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
     for fruit in self.held_fruits:
         fruit.center_x += dx
         fruit.center_y += dy
+
+    self.cursor_delta = [dx, dy]    # Чтобы в on_mouse_release можно было передать фрукту какую-то скорость
+    
 
 def on_mouse_enter(self, x, y):
     on_mouse_basic_enter(self, x, y)
