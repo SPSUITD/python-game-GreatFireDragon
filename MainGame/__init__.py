@@ -33,12 +33,13 @@ class  MainGame(arcade.View):
 
         # DRAG AND DROP
         self.held_fruits = None
-        self.held_fruits_original_position = None
+        self.cursor_delta = [0,0]
 
-        # Physics engine
+
+        # PHYSICS ENGINE
         self.physics_engine = arcade.PymunkPhysicsEngine
 
-        self.fruit_impulse = 1000
+
 
     
         # SOUNDS

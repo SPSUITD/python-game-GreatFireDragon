@@ -26,7 +26,6 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
 
         self.held_fruits = [primary_fruit]
-        self.held_fruits_original_position = [self.held_fruits[0].position]
         pull_to_top(self, self.held_fruits[0])
 
 def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
@@ -38,6 +37,7 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
 
     self.removed = False
     self.physics_engine.add_sprite(self.held_fruits[0])
+    self.physics_engine.set_velocity(self.held_fruits[0], (100,0))
     self.held_fruits = []
     cursor_hover_fruit(self, x, y)
 
@@ -61,10 +61,10 @@ def on_key_press(self, symbol, modifiers):
     if symbol == arcade.key.P:
         self.filter_on = not self.filter_on
     if symbol == arcade.key.UP:
-        self.fruit_impulse += 50
+        print("presed: UP")
     if symbol == arcade.key.DOWN:
-        self.fruit_impulse -= 50
-    print(self.fruit_impulse)
+        print("pressed: DOWN")
+    
         
 def on_key_release(self, symbol, modifiers):
     on_key_basic_release(self, symbol, modifiers)

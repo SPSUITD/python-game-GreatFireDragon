@@ -8,7 +8,6 @@ from static.constants import *
 
 def setup(self):
     self.held_fruits = []
-    self.held_fruits_original_position = []
 
     # LITTLE 16x16 FRUITS FROM STARDEW VALLEY
     # for i in range(3):
