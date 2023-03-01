@@ -30,13 +30,13 @@ def setup(self):
     fruit_path = "fruits/"
     dir_list = os.listdir(fruit_path)
 
-    for i in dir_list: 
-        fruit = arcade.Sprite(f"{fruit_path}{i}")
-        # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
-        fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-        fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
-        fruit.scale = 0.3
-        self.fruit_list.append(fruit)
+    # for i in dir_list: 
+    #     fruit = arcade.Sprite(f"{fruit_path}{i}")
+    #     # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
+    #     fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
+    #     fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
+    #     fruit.scale = 0.3
+    #     self.fruit_list.append(fruit)
         
 
 
