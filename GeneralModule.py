@@ -11,13 +11,7 @@ def is_cursor_hover_fruit(self, x, y):
     fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.fruit_list)
     cursor_N = 1
     if len(self.held_fruits) == 0:         # Если мы ничего не держим
-        if len(fruits_at_cursor)>0:     # Если находимся над фруктом
-            cursor_N = 2
-        else:
-            if self.mouse_is_pressed:
-                cursor_N = 3
-            else:
-                cursor_N = 1
+        cursor_N = 2 if len(fruits_at_cursor) > 0 else 3 if self.mouse_is_pressed else 1
     else:
         cursor_N = 3
 
