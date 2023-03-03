@@ -6,21 +6,22 @@ data = json.load(f)
 from static.constants import *
 from GeneralModule import cursor_coordinates, is_cursor_hover_fruit
 
-
+width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 def on_mouse_basic_press(self, x, y, button, key_modifiers):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_3.png", CURSOR_SCALE)
+    self.cursor_sprite.set_texture(2)
     cursor_coordinates(self, x, y)
+
 
 def on_mouse_basic_release(self, x: float, y: float, button: int, modifiers: int):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
+    self.cursor_sprite.set_texture(0)
     cursor_coordinates(self, x, y)
 
-def on_mouse_basic_motion(self, x: float, y: float, dx: float, dy: float):  
+def on_mouse_basic_motion(self, x: float, y: float, dx: float, dy: float):
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_enter(self, x, y):
-    self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
+    self.cursor_sprite.set_texture(0)
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_leave(self, x, y):
@@ -35,6 +36,7 @@ def on_key_basic_press(self, symbol, modifiers):
             json.dump(data, jsonFile)
 
         self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
+        # self.window.set_viewport(0, width, 0, height)
 
 
 def on_key_basic_release(self, symbol, modifiers):

@@ -27,8 +27,13 @@ class  MainGame(arcade.View):
         self.removed = False
             
         # CURSOR
-        self.window.set_mouse_visible(False)
-        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
+        self.window.set_mouse_visible(True)
+        self.cursor_sprite = arcade.Sprite()
+        self.cursor_sprite.scale= CURSOR_SCALE
+        for i in range(1,4):
+            texture = arcade.load_texture(f"images/HANDS_CURSOR_{i}.png")
+            self.cursor_sprite.append_texture(texture)
+        self.cursor_sprite.set_texture(0)
 
 
         # DRAG AND DROP

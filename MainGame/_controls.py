@@ -7,7 +7,7 @@ data = json.load(f)
 from static.constants import *
 from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, pull_to_top
 
-
+width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
@@ -16,7 +16,7 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 def on_mouse_press(self, x, y, button, key_modifiers):
     on_mouse_basic_press(self, x, y, button, key_modifiers)
 
-    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.fruit_list)
+    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.fruit_list) # error with fullscren so different method
     if len(fruits_at_cursor) > 0:
         primary_fruit = fruits_at_cursor[-1]
 
@@ -45,13 +45,16 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
 
 
 def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
-    # on_mouse_basic_motion(self, x, y, dx, dy)
+    on_mouse_basic_motion(self, x, y, dx, dy)
     is_cursor_hover_fruit(self, x, y)
 
     for fruit in self.held_fruits:
         fruit.center_x += dx
         fruit.center_y += dy
 
+    # if self.window.fullscreen:        
+    #     dx = ( dx / width ) * SCREEN_WIDTH
+    #     dy = ( dy / height ) * SCREEN_HEIGHT
     self.cursor_delta = [dx, dy]    # Чтобы в on_mouse_release можно было передать фрукту какую-то скорость
     
 

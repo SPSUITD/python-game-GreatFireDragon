@@ -56,7 +56,7 @@ class Menu(arcade.View):
 
         # CURSOR
         self.window.set_mouse_visible(False)
-        self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
+        self.cursor_sprite.set_texture(0)
 
         #  MANAGER
         self.manager = arcade.gui.UIManager()
