@@ -1,9 +1,5 @@
 import arcade
 import arcade.gui
-import json
-f = open("static/controls.json")
-data = json.load(f)
-FS = data["FULLSCREEN_SCALE"]
 
 # Главная информация
 SCREEN_WIDTH = 1024
@@ -48,7 +44,7 @@ MENU_STYLE = {
 
 color1 = (215, 214, 165)
 color2 = (219, 166, 123)
-GRADIENT_POINTS = (0, 0), (FS*SCREEN_WIDTH, 0), (FS*SCREEN_WIDTH, FS*SCREEN_HEIGHT), (0, FS*SCREEN_HEIGHT)
+GRADIENT_POINTS = [(0, 0), (SCREEN_WIDTH, 0), (SCREEN_WIDTH, SCREEN_HEIGHT), (0, SCREEN_HEIGHT)]
 GRADIENT_COLOR = (color1, color1, color2, color2)
 
 BUTTON_MARGIN = 20

@@ -4,7 +4,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import cursor_coordinates, is_cursor_hover_fruit
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
@@ -31,18 +31,17 @@ def on_key_basic_press(self, symbol, modifiers):
     # f11 для смены режима fullscreen
     if symbol == 65480:
         self.window.set_fullscreen(not self.window.fullscreen)
-        data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
-        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
-            json.dump(data, jsonFile)
-
-        # self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
-        # self.window.set_viewport(0, width, 0, height)
-
         width, height = self.window.get_size()
         self.window.set_viewport(0, width, 0, height)
-        data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH                             # Также запись состояния в JSON
+
+        data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
+        data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
         with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
+
+        draw_gradient_bg(self)
+
+
         
 
 

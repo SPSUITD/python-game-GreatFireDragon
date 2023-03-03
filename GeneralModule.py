@@ -2,6 +2,7 @@ import arcade
 import arcade.gui
 from pyglet.math import Vec2
 from static.constants import *
+import json
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
@@ -42,6 +43,14 @@ def define_cursor(self):
     self.cursor_sprite.set_texture(0)
 
 def draw_gradient_bg(self):
+    f = open("static/controls.json")
+    data = json.load(f)
+    FS = data["FULLSCREEN_SCALE"]
+
     self.shapes = arcade.ShapeElementList()
-    rect = arcade.create_rectangle_filled_with_colors(GRADIENT_POINTS, GRADIENT_COLOR)
+    gp = []
+    for point in GRADIENT_POINTS:
+        gp.append([x * FS for x in point])
+    gp_list = gp[0], gp[1], gp[2], gp[3]
+    rect = arcade.create_rectangle_filled_with_colors(gp_list, GRADIENT_COLOR)
     self.shapes.append(rect)
