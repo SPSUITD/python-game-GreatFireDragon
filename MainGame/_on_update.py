@@ -13,27 +13,26 @@ def on_update(self, delta_time):
     self.physics_engine.step()
 
     for fruit in self.fruit_list:
-        if fruit.position[1] < -200:
-            new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-            if new_fruit_position <0:
-                new_fruit_position = 0
-            if new_fruit_position >SCREEN_WIDTH:
-                new_fruit_position = SCREEN_WIDTH
-            
-            deviation = new_fruit_position - SCREEN_WIDTH/2
+        try:
+            if fruit.position[1] < -200:
+                new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
+                if new_fruit_position <0:
+                    new_fruit_position = 0
+                if new_fruit_position >SCREEN_WIDTH:
+                    new_fruit_position = SCREEN_WIDTH
+                
+                deviation = new_fruit_position - SCREEN_WIDTH/2
 
-            self.physics_engine.set_position(fruit, (new_fruit_position, -100))
-            self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))
+                self.physics_engine.set_position(fruit, (new_fruit_position, -100))
+                self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))
 
-            # print("position: ", fruit.position[0])
-            # print("new pos: ", new_fruit_position)
-            # print("deviation: ", deviation)
-            # print("-----------------------------")
 
-        # if fruit.position[0] < 0 or fruit.position[0] > SCREEN_WIDTH:
-        #     self.physics_engine.set_position(fruit, (random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4), 100))
-        #     self.physics_engine.set_velocity(fruit, (random.randrange(-FRUIT_MAX_HORIZONTAL_SPEED/2, FRUIT_MAX_VERTICAL_SPEED/2), FRUIT_IMPULSE ))
+            # if fruit.position[0] < 0 or fruit.position[0] > SCREEN_WIDTH:
+            #     self.physics_engine.set_position(fruit, (random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4), 100))
+            #     self.physics_engine.set_velocity(fruit, (random.randrange(-FRUIT_MAX_HORIZONTAL_SPEED/2, FRUIT_MAX_VERTICAL_SPEED/2), FRUIT_IMPULSE ))
 
+        except:
+            pass
 
 
 
