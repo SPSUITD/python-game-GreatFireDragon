@@ -34,6 +34,7 @@ class  MainGame(arcade.View):
         # DRAG AND DROP
         self.held_fruits = None
         self.cursor_delta = [1,1]
+        self.mouse_is_pressed = False
 
 
         # PHYSICS ENGINE

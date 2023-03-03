@@ -4,7 +4,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import cursor_coordinates, cursor_hover_fruit
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit
 
 
 
@@ -16,7 +16,7 @@ def on_mouse_basic_release(self, x: float, y: float, button: int, modifiers: int
     self.cursor_sprite = arcade.Sprite("images/HANDS_CURSOR_1.png", CURSOR_SCALE)
     cursor_coordinates(self, x, y)
 
-def on_mouse_basic_motion(self, x: float, y: float, dx: float, dy: float):
+def on_mouse_basic_motion(self, x: float, y: float, dx: float, dy: float):  
     cursor_coordinates(self, x, y)
 
 def on_mouse_basic_enter(self, x, y):

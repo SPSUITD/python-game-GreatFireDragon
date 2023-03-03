@@ -5,7 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
-from GeneralModule import cursor_coordinates, cursor_hover_fruit, pull_to_top
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, pull_to_top
 
 
 
@@ -27,10 +27,12 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
         self.held_fruits = [primary_fruit]
         pull_to_top(self, self.held_fruits[0])
+    else:
+        self.mouse_is_pressed = True
 
 def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     on_mouse_basic_release(self, x, y, button, modifiers)
-    
+    self.mouse_is_pressed = False
 
     if len(self.held_fruits) == 0:
         return
@@ -39,12 +41,12 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     self.physics_engine.add_sprite(self.held_fruits[0])
     self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
     self.held_fruits = []
-    cursor_hover_fruit(self, x, y)
+    is_cursor_hover_fruit(self, x, y)
 
 
 def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
-    on_mouse_basic_motion(self, x, y, dx, dy)
-    cursor_hover_fruit(self, x, y)
+    # on_mouse_basic_motion(self, x, y, dx, dy)
+    is_cursor_hover_fruit(self, x, y)
 
     for fruit in self.held_fruits:
         fruit.center_x += dx
