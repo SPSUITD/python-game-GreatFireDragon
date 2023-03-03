@@ -16,9 +16,9 @@ def on_update(self, delta_time):
         try:
             if fruit.position[1] < -200:
                 new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-                if new_fruit_position <0:
+                if new_fruit_position < 0:
                     new_fruit_position = 0
-                if new_fruit_position >SCREEN_WIDTH:
+                if new_fruit_position > SCREEN_WIDTH:
                     new_fruit_position = SCREEN_WIDTH
                 
                 deviation = new_fruit_position - SCREEN_WIDTH/2

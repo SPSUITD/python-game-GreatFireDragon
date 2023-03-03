@@ -28,6 +28,7 @@ class  MainGame(arcade.View):
             
         # CURSOR
         self.window.set_mouse_visible(True)
+        
         self.cursor_sprite = arcade.Sprite()
         self.cursor_sprite.scale= CURSOR_SCALE
         for i in range(1,4):
