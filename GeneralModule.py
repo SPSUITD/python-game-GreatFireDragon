@@ -29,3 +29,14 @@ def is_cursor_hover_fruit(self, x, y):
 def pull_to_top(self, fruit: arcade.Sprite):
         self.fruit_list.remove(fruit)
         self.fruit_list.append(fruit)
+
+
+def define_cursor(self):
+    self.cursor_sprite.scale= CURSOR_SCALE
+    for i in range(1,4):
+        texture = arcade.load_texture(
+                f"images/HANDS_CURSOR_{i}.png",
+                x = 0, y = 0
+            )
+        self.cursor_sprite.append_texture(texture)
+    self.cursor_sprite.set_texture(0)

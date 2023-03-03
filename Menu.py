@@ -9,7 +9,7 @@ from MainGame import MainGame
 from Settings import Settings
 from Rules import Rules
 from static.constants import *
-from GeneralModule import cursor_coordinates
+from GeneralModule import cursor_coordinates, define_cursor
 
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
     
@@ -57,11 +57,8 @@ class Menu(arcade.View):
         # CURSOR
         self.window.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite()
-        self.cursor_sprite.scale= CURSOR_SCALE
-        for i in range(1,4):
-            texture = arcade.load_texture(f"images/HANDS_CURSOR_{i}.png")
-            self.cursor_sprite.append_texture(texture)
-        self.cursor_sprite.set_texture(0)
+        define_cursor(self)
+
 
         #  MANAGER
         self.manager = arcade.gui.UIManager()

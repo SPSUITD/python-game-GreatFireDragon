@@ -6,6 +6,7 @@ from arcade.experimental import Shadertoy
 import json
 # files
 from static.constants import *
+from GeneralModule import define_cursor
 
 class  MainGame(arcade.View):
 
@@ -28,13 +29,9 @@ class  MainGame(arcade.View):
             
         # CURSOR
         self.window.set_mouse_visible(True)
-        
+
         self.cursor_sprite = arcade.Sprite()
-        self.cursor_sprite.scale= CURSOR_SCALE
-        for i in range(1,4):
-            texture = arcade.load_texture(f"images/HANDS_CURSOR_{i}.png")
-            self.cursor_sprite.append_texture(texture)
-        self.cursor_sprite.set_texture(0)
+        define_cursor(self)
 
 
         # DRAG AND DROP
