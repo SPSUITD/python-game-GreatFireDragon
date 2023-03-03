@@ -8,7 +8,7 @@ data = json.load(f)
 # from Menu import Menu
 import Menu
 from static.constants import *
-from GeneralModule import cursor_coordinates, define_cursor
+from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg
 
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
     
@@ -44,10 +44,7 @@ class Rules(arcade.View):
         arcade.set_background_color(BG_MENU)        # ATAVISM
 
         # GRADIENT BG
-        self.shapes = arcade.ShapeElementList()
-        rect = arcade.create_rectangle_filled_with_colors(GRADIENT_POINTS, GRADIENT_COLOR)
-        self.shapes.append(rect)
-        # GRADIENT BG
+        draw_gradient_bg(self)
 
         create_buttons(self)
         

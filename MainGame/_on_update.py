@@ -13,6 +13,7 @@ def on_update(self, delta_time):
     self.physics_engine.step()
 
     for fruit in self.fruit_list:
+
         try:
             if fruit.position[1] < -200:
                 new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)

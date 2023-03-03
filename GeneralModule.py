@@ -6,9 +6,9 @@ from static.constants import *
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 def cursor_coordinates(self, x, y):
-    if self.window.fullscreen:        
-        x = ( x / width ) * SCREEN_WIDTH
-        y = ( y / height ) * SCREEN_HEIGHT
+    # if self.window.fullscreen:        
+    #     x = ( x / width ) * SCREEN_WIDTH
+    #     y = ( y / height ) * SCREEN_HEIGHT
     self.cursor_sprite.center_x = x
     self.cursor_sprite.center_y = y
 
@@ -40,3 +40,8 @@ def define_cursor(self):
             )
         self.cursor_sprite.append_texture(texture)
     self.cursor_sprite.set_texture(0)
+
+def draw_gradient_bg(self):
+    self.shapes = arcade.ShapeElementList()
+    rect = arcade.create_rectangle_filled_with_colors(GRADIENT_POINTS, GRADIENT_COLOR)
+    self.shapes.append(rect)

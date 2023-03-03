@@ -22,6 +22,7 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
         if not self.removed:
             self.physics_engine.remove_sprite(primary_fruit)
+            primary_fruit.scale = FRUIT_HELD_SCALE
             self.removed = True
 
 
@@ -38,6 +39,7 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
         return
 
     self.removed = False
+    self.held_fruits[0].scale = FRUIT_SCALE
     self.physics_engine.add_sprite(self.held_fruits[0])
     self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
     self.held_fruits = []

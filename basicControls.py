@@ -35,8 +35,15 @@ def on_key_basic_press(self, symbol, modifiers):
         with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
 
-        self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
+        # self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)    # чтобы растянуть на весь экран
         # self.window.set_viewport(0, width, 0, height)
+
+        width, height = self.window.get_size()
+        self.window.set_viewport(0, width, 0, height)
+        data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH                             # Также запись состояния в JSON
+        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+            json.dump(data, jsonFile)
+        
 
 
 def on_key_basic_release(self, symbol, modifiers):
