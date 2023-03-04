@@ -37,7 +37,10 @@ def on_click_get_back(self, event):
     self.manager.enable() if self.on_pause else self.manager.disable()
 
 def on_click_menu(self, event):
-        self.manager.clear()
-        from Menu import Menu
-        view = Menu()
-        self.window.show_view(view)
+    self.on_pause = not self.on_pause
+    self.manager.enable() if self.on_pause else self.manager.disable()
+    
+    self.manager.clear()
+    from Menu import Menu
+    view = Menu()
+    self.window.show_view(view)

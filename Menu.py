@@ -157,6 +157,12 @@ class Menu(arcade.View):
 
     def on_click_get_back(self, event):
         self.v_box.clear()
+        if len(self.slider_widgets)>0:
+            for i in range(len(self.slider_widgets)):
+                self.manager.remove(self.slider_widgets[i])
+        self.rules = False
+        self.settings = False
+        create_buttons(self)
 
 
     def on_draw(self):
