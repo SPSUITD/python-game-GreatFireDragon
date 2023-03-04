@@ -44,7 +44,7 @@ width, height = arcade.window_commands.get_display_size()   # Window height and 
         
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
-        arcade.exit()
+        arcade.close_window()
 
 def create_buttons(self):
     self.v_box = arcade.gui.UIBoxLayout()
@@ -145,7 +145,8 @@ class Menu(arcade.View):
         with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
 
-        arcade.exit()
+        # arcade.close_window()
+        arcade.close_window()
 
     def on_click_rules(self, event):
         self.v_box.clear()

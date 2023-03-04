@@ -40,7 +40,7 @@ def on_key_basic_press(self, symbol, modifiers):
     #     with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
     #         json.dump(data, jsonFile)
 
-        # arcade.exit()
+        # arcade.close_window()
         # draw_gradient_bg(self)
     pass
 
