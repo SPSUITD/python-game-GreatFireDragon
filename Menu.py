@@ -3,18 +3,43 @@ import arcade
 import arcade.gui
 from arcade.experimental.uislider import UISlider
 import json
+import importlib
 f = open("static/controls.json")
 data = json.load(f)
 
 from MainGame import MainGame
 from Settings import Settings
 from Rules import Rules
-from static.constants import *
-from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg
 
+
+# from static.constants import *
+import static.constants as const
+
+from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
     
 width, height = arcade.window_commands.get_display_size()   # Window height and width
+
+
+def refresh_FS():
+    importlib.reload(const)
+
+BUTTON_WIDTH = const.BUTTON_WIDTH
+BUTTON_HEIGHT = const.BUTTON_HEIGHT
+BUTTON_MARGIN = const.BUTTON_MARGIN
+
+MENU_STYLE = const.MENU_STYLE
+BG_MENU = const.BG_MENU
+FS = const.FS
+
+SCREEN_WIDTH = const.SCREEN_WIDTH
+SCREEN_HEIGHT = const.SCREEN_HEIGHT
+SLIDER_HEIGHT = const.SLIDER_HEIGHT
+SETTINGS_SLIDER_STYLE = const.SETTINGS_SLIDER_STYLE
+
+FONT, FONT_SIZE, SETTINGS_LABEL_STYLE = const.FONT, const.FONT_SIZE, const.SETTINGS_LABEL_STYLE
+
+
 
 
 def get_back_button_create(self):
@@ -82,7 +107,6 @@ class Menu(arcade.View):
     def on_click_settings(self, event):
         self.v_box.clear()
         self.settings = True
-        get_back_button_create(self)
 
         ui_slider = UISlider(value=data["volume"]*100, width=SCREEN_WIDTH*0.9, height=SLIDER_HEIGHT, style=SETTINGS_SLIDER_STYLE)
         label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=FONT_SIZE, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
@@ -99,11 +123,35 @@ class Menu(arcade.View):
         # to clear slider afterwards
         self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=ui_slider))
         self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50*FS))
+
+        # Fullscreen button
+        feelscreen_button = arcade.gui.UIFlatButton(text="fullscreen", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
+        self.v_box.add(feelscreen_button.with_space_around(bottom=BUTTON_MARGIN))
+        feelscreen_button.on_click = self.on_click_fullscreen
+
+        get_back_button_create(self)
+
+        # adding to gui manager
         self.slider_widgets.append(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
         for i in range(len(self.slider_widgets)):
             self.manager.add(self.slider_widgets[i])
+
+
+        
+        
+    def on_click_fullscreen(self, event):
+        self.window.set_fullscreen(not self.window.fullscreen)
+        width, height = self.window.get_size()
+        self.window.set_viewport(0, width, 0, height)
         
 
+        data["fullscreen"] = self.window.fullscreen             # Также запись состояния в JSON
+        data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
+        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+            json.dump(data, jsonFile)
+
+        refresh_FS()
+        print(data["fullscreen"], data["FULLSCREEN_SCALE"], const.BUTTON_HEIGHT, sep=" - ")
 
     def on_click_rules(self, event):
         self.v_box.clear()
@@ -140,6 +188,10 @@ class Menu(arcade.View):
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
                          SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
+            arcade.draw_text("WARNING! The programm will crash itself on purpose. ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 80*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
+            arcade.draw_text("Simply run the programm again! ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 120*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!
