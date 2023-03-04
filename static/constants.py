@@ -79,4 +79,6 @@ SETTINGS_SLIDER_STYLE = {
     "pressed_unfilled_bar":  arcade.color.BLOND
 }
 
+# SLIDER
+SLIDER_HEIGHT = 50
 

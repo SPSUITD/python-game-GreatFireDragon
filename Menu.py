@@ -1,6 +1,7 @@
 # modules
 import arcade
 import arcade.gui
+from arcade.experimental.uislider import UISlider
 import json
 f = open("static/controls.json")
 data = json.load(f)
@@ -16,7 +17,10 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
-    
+def get_back_button_create(self):
+    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, style=MENU_STYLE)
+    self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
+    get_back_button.on_click = self.on_click_get_back
         
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
@@ -41,9 +45,7 @@ def create_buttons(self):
     quit_button = QuitButton(text="Quit", width=BUTTON_WIDTH, style=MENU_STYLE)
     self.v_box.add(quit_button.with_space_around(bottom=BUTTON_MARGIN))
 
-    self.manager.add(
-        arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box)
-        )
+    self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box))
 
 #  MENU -----------------------------------------------------------
 class Menu(arcade.View):
@@ -68,6 +70,7 @@ class Menu(arcade.View):
 
         # CREATE BUTTONS
         create_buttons(self)
+        self.slider_widgets = []
 
         
 
@@ -80,25 +83,43 @@ class Menu(arcade.View):
     def on_click_settings(self, event):
         self.v_box.clear()
         self.settings = True
+        get_back_button_create(self)
+
+        ui_slider = UISlider(value=data["volume"]*100, width=SCREEN_WIDTH*0.9, height=SLIDER_HEIGHT, style=SETTINGS_SLIDER_STYLE)
+        label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=30, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
+
+        @ui_slider.event()
+        def on_change(event: arcade.gui.UIOnChangeEvent):
+            label.text = f"{ui_slider.value:02.0f}"
+            label.fit_content()
+
+            data["volume"] = ui_slider.value / 100
+            with open("static/controls.json", "w") as jsonFile:
+                json.dump(data, jsonFile)
+
+        # to clear slider afterwards
+        self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=ui_slider))
+        self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50))
+        self.slider_widgets.append(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
+        for i in range(len(self.slider_widgets)):
+            self.manager.add(self.slider_widgets[i])
+        
+
 
     def on_click_rules(self, event):
         self.v_box.clear()
         self.rules = True
-        self.v_box = arcade.gui.UIBoxLayout()
-
-        get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=200, style=MENU_STYLE)
-        self.v_box.add(get_back_button.with_space_around(bottom=20))
-        get_back_button.on_click = self.on_click_get_back
-
-
-        self.manager.add(
-            arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box)
-            )
+        get_back_button_create(self)
+        self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
 
 
     def on_click_get_back(self, event):
         self.v_box.clear()
+        if len(self.slider_widgets)>0:
+            for i in range(len(self.slider_widgets)):
+                self.manager.remove(self.slider_widgets[i])
         self.rules = False
+        self.settings = False
         create_buttons(self)
 
 
@@ -118,9 +139,10 @@ class Menu(arcade.View):
             arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
                             screen_width // 2, screen_height // 2 - 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
         if self.settings:
-            pass
+            arcade.draw_text("Adjust the slider to change music volume: ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
 
-        self.manager.draw()         # Buttons (menu)
+        self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!
 
    
