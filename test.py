@@ -1,4 +1,4 @@
-import importlib
+
 import json
 f = open("static/controls.json")
 data = json.load(f)

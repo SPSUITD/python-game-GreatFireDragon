@@ -29,19 +29,20 @@ def on_mouse_basic_leave(self, x, y):
 
 def on_key_basic_press(self, symbol, modifiers):
     # f11 для смены режима fullscreen
-    if symbol == 65480:
-        self.window.set_fullscreen(not self.window.fullscreen)
-        width, height = self.window.get_size()
-        self.window.set_viewport(0, width, 0, height)
-        # self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)
+    # if symbol == 65480:
+    #     self.window.set_fullscreen(not self.window.fullscreen)
+    #     width, height = self.window.get_size()
+    #     self.window.set_viewport(0, width, 0, height)
+    #     # self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)
 
-        data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
-        data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
-        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
-            json.dump(data, jsonFile)
+    #     data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
+    #     data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
+    #     with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+    #         json.dump(data, jsonFile)
 
         # arcade.exit()
         # draw_gradient_bg(self)
+    pass
 
 
         

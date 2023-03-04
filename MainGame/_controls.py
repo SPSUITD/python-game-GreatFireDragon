@@ -5,7 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
-from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, pull_to_top
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, pull_to_top, draw_gradient_bg
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
@@ -70,6 +70,11 @@ def on_key_press(self, symbol, modifiers):
     on_key_basic_press(self, symbol, modifiers)
     if symbol == arcade.key.P:
         self.filter_on = not self.filter_on
+    if symbol == arcade.key.ESCAPE:
+        draw_gradient_bg(self)
+        self.manager.enable()
+        self.on_pause = not self.on_pause
+        
     if symbol == arcade.key.UP:
         print("presed: UP")
     if symbol == arcade.key.DOWN:

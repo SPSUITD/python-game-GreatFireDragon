@@ -3,13 +3,11 @@ import arcade
 import arcade.gui
 from arcade.experimental.uislider import UISlider
 import json
-import importlib
+
 f = open("static/controls.json")
 data = json.load(f)
 
 from MainGame import MainGame
-from Settings import Settings
-from Rules import Rules
 
 
 from static.constants import *

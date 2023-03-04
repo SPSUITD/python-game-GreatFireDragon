@@ -33,6 +33,8 @@ class  MainGame(arcade.View):
         self.cursor_sprite = arcade.Sprite()
         define_cursor(self)
 
+        #  MANAGER
+        self.manager = arcade.gui.UIManager()
 
         # DRAG AND DROP
         self.held_fruits = None
@@ -42,8 +44,11 @@ class  MainGame(arcade.View):
 
         # PHYSICS ENGINE
         self.physics_engine = arcade.PymunkPhysicsEngine
+        self.on_pause = False
 
-
+        # CREATE BUTTONS
+        from ._pause_menu import create_buttons
+        create_buttons(self)
 
     
         # SOUNDS
@@ -59,3 +64,5 @@ class  MainGame(arcade.View):
     from ._on_draw import on_draw
     from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, on_mouse_enter, on_mouse_leave, on_key_press, on_key_release
     # Здесь основная логика
+
+
