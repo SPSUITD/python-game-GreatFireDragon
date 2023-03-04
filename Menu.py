@@ -182,10 +182,10 @@ class Menu(arcade.View):
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
                          SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("WARNING! The programm will crash itself on purpose. ",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 80*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("Simply run the programm again! ",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 120*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
+            arcade.draw_text("WARNING! If you press toggle fullscreen button, ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 80*FS, font_name=FONT, font_size=FONT_SIZE, color=arcade.color.RED, anchor_x="center")
+            arcade.draw_text("The programm will crash itself on purpose.",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 120*FS, font_name=FONT, font_size=FONT_SIZE, color=arcade.color.RED, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!

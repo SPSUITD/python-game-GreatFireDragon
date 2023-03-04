@@ -28,6 +28,7 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
         self.held_fruits = [primary_fruit]
         pull_to_top(self, self.held_fruits[0])
+        self.held_fruits[0].turn_right(self.held_fruits[0].angle)
     else:
         self.mouse_is_pressed = True
 
@@ -42,6 +43,9 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     self.held_fruits[0].scale = FRUIT_SCALE
     self.physics_engine.add_sprite(self.held_fruits[0])
     self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
+
+    # print("fruit angle:", self.held_fruits[0].angle)
+
     self.held_fruits = []
     is_cursor_hover_fruit(self, x, y)
 

@@ -29,7 +29,7 @@ def on_update(self, delta_time):
                 
                     deviation = new_fruit_position - SCREEN_WIDTH/2
                     self.physics_engine.set_position(fruit, (new_fruit_position, -100))
-                    self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))
+                    self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE/5))   # убрать /5
             except:
                 pass
 

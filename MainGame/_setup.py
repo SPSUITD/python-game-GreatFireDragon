@@ -26,7 +26,7 @@ def setup(self):
     gravity = (0, -GRAVITY)
     self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
 
-    # BIG FRUITS
+ # BIG FRUITS
     fruit_path = "fruits/"
     dir_list = os.listdir(fruit_path)
 
@@ -41,12 +41,12 @@ def setup(self):
 
 
 
-    # COLLISION TESTS BIG ORANGE
-    # test_fruit = arcade.Sprite("fruits/orange.png")
-    # test_fruit.center_x = SCREEN_WIDTH/2
-    # test_fruit.center_y = SCREEN_HEIGHT/2
-    # test_fruit.scale = FRUIT_SCALE
-    # self.fruit_list.append(test_fruit)
+# COLLISION TESTS BIG ORANGE
+    test_fruit = arcade.Sprite("fruits/orange.png")
+    test_fruit.center_x = SCREEN_WIDTH/2
+    test_fruit.center_y = SCREEN_HEIGHT/2
+    test_fruit.scale = FRUIT_SCALE
+    self.fruit_list.append(test_fruit)
     
     
 
@@ -63,7 +63,7 @@ def setup(self):
         self.physics_engine.add_sprite(self.fruit_list[i],
                                         friction=FRUIT_FRICTION,
                                         mass=FRUIT_MASS,
-                                        moment_of_inertia = 5000,
+                                        moment_of_inertia = FRUIT_MOMENT_OF_ENERTIA,
                                         # moment=arcade.PymunkPhysicsEngine.MOMENT_INF,
                                         collision_type=f"fruit{i}",
                                         max_horizontal_velocity=FRUIT_MAX_HORIZONTAL_SPEED,
