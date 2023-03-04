@@ -18,31 +18,30 @@ width, height = arcade.window_commands.get_display_size()   # Window height and 
 
 
 def get_back_button_create(self):
-    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, style=MENU_STYLE)
+    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
     get_back_button.on_click = self.on_click_get_back
         
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
-        print("quit button clicked")
         arcade.exit()
 
 def create_buttons(self):
     self.v_box = arcade.gui.UIBoxLayout()
 
-    start_button = arcade.gui.UIFlatButton(text="Start Game", width=BUTTON_WIDTH, style=MENU_STYLE)
+    start_button = arcade.gui.UIFlatButton(text="Start Game", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(start_button.with_space_around(bottom=BUTTON_MARGIN))
     start_button.on_click = self.on_click_start
 
-    rules_button = arcade.gui.UIFlatButton(text="Rules", width=BUTTON_WIDTH, style=MENU_STYLE)
+    rules_button = arcade.gui.UIFlatButton(text="Rules", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(rules_button.with_space_around(bottom=BUTTON_MARGIN))
     rules_button.on_click = self.on_click_rules
 
-    settings_button = arcade.gui.UIFlatButton(text="Settings", width=BUTTON_WIDTH, style=MENU_STYLE)
+    settings_button = arcade.gui.UIFlatButton(text="Settings", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(settings_button.with_space_around(bottom=BUTTON_MARGIN))
     settings_button.on_click = self.on_click_settings
 
-    quit_button = QuitButton(text="Quit", width=BUTTON_WIDTH, style=MENU_STYLE)
+    quit_button = QuitButton(text="Quit", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(quit_button.with_space_around(bottom=BUTTON_MARGIN))
 
     self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="center_y", child=self.v_box))
@@ -86,7 +85,7 @@ class Menu(arcade.View):
         get_back_button_create(self)
 
         ui_slider = UISlider(value=data["volume"]*100, width=SCREEN_WIDTH*0.9, height=SLIDER_HEIGHT, style=SETTINGS_SLIDER_STYLE)
-        label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=30, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
+        label = arcade.gui.UILabel(text=f"{ui_slider.value:02.0f}", font_name=FONT, font_size=FONT_SIZE, text_color=arcade.color.RED, style=SETTINGS_LABEL_STYLE)
 
         @ui_slider.event()
         def on_change(event: arcade.gui.UIOnChangeEvent):
@@ -99,7 +98,7 @@ class Menu(arcade.View):
 
         # to clear slider afterwards
         self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=ui_slider))
-        self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50))
+        self.slider_widgets.append(arcade.gui.UIAnchorWidget(child=label, anchor_x="center_x", anchor_y="center_y", align_y=50*FS))
         self.slider_widgets.append(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
         for i in range(len(self.slider_widgets)):
             self.manager.add(self.slider_widgets[i])
@@ -131,16 +130,16 @@ class Menu(arcade.View):
         if self.rules:
             left, screen_width, bottom, screen_height = self.window.get_viewport()
             arcade.draw_text("Congue inceptos orci quam mauris per vitae maecenas.",
-                            screen_width // 2, screen_height // 2 + 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                            screen_width // 2, screen_height // 2 + 60*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
             arcade.draw_text("Dapibus sociosqu tristique hymenaeos bibendum commodo",
-                            screen_width // 2, screen_height // 2 + 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                            screen_width // 2, screen_height // 2 + 20*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
             arcade.draw_text("semper nunc cum accumsan velit class commodo.",
-                            screen_width // 2, screen_height // 2 - 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                            screen_width // 2, screen_height // 2 - 20*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
             arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
-                            screen_width // 2, screen_height // 2 - 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                            screen_width // 2, screen_height // 2 - 60*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!

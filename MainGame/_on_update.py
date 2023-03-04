@@ -2,6 +2,7 @@
 import arcade
 import random
 from static.constants import *
+width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
 def on_update(self, delta_time):

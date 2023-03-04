@@ -77,7 +77,7 @@ class Settings(arcade.View):
         self.clear()
         self.shapes.draw()          # Gradient BG 
         arcade.draw_text("Adjust the slider to change music volume: ",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
         self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
 
