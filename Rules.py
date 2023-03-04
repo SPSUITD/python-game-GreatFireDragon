@@ -63,15 +63,7 @@ class Rules(arcade.View):
         self.shapes.draw()          # Gradient BG
 
 
-        left, screen_width, bottom, screen_height = self.window.get_viewport()
-        arcade.draw_text("Congue inceptos orci quam mauris per vitae maecenas.",
-                         screen_width // 2, screen_height // 2 + 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("Dapibus sociosqu tristique hymenaeos bibendum commodo",
-                         screen_width // 2, screen_height // 2 + 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("semper nunc cum accumsan velit class commodo.",
-                         screen_width // 2, screen_height // 2 - 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
-        arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
-                         screen_width // 2, screen_height // 2 - 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+        
 
 
 

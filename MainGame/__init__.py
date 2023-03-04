@@ -28,7 +28,7 @@ class  MainGame(arcade.View):
         self.removed = False
             
         # CURSOR
-        self.window.set_mouse_visible(True)
+        self.window.set_mouse_visible(False)
 
         self.cursor_sprite = arcade.Sprite()
         define_cursor(self)

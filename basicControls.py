@@ -33,6 +33,7 @@ def on_key_basic_press(self, symbol, modifiers):
         self.window.set_fullscreen(not self.window.fullscreen)
         width, height = self.window.get_size()
         self.window.set_viewport(0, width, 0, height)
+        # self.window.set_viewport(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT)
 
         data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
         data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH

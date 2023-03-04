@@ -50,11 +50,13 @@ class Menu(arcade.View):
     def __init__(self):
         super().__init__()
 
+        self.rules = False
+        self.settings = False
+
         # CURSOR
-        self.window.set_mouse_visible(True)
+        self.window.set_mouse_visible(False)
         self.cursor_sprite = arcade.Sprite()
         define_cursor(self)
-
 
         #  MANAGER
         self.manager = arcade.gui.UIManager()
@@ -63,12 +65,11 @@ class Menu(arcade.View):
 
         # GRADIENT BG
         draw_gradient_bg(self)
-        
 
+        # CREATE BUTTONS
         create_buttons(self)
-        
 
-   
+        
 
     def on_click_start(self, event):
         self.manager.clear()
@@ -77,21 +78,47 @@ class Menu(arcade.View):
         self.window.show_view(view)
 
     def on_click_settings(self, event):
-        self.manager.disable()
-        view = Settings()
-        self.window.show_view(view)
+        self.v_box.clear()
+        self.settings = True
 
     def on_click_rules(self, event):
-        self.manager.disable()
-        view = Rules()
-        self.window.show_view(view)
+        self.v_box.clear()
+        self.rules = True
+        self.v_box = arcade.gui.UIBoxLayout()
+
+        get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=200, style=MENU_STYLE)
+        self.v_box.add(get_back_button.with_space_around(bottom=20))
+        get_back_button.on_click = self.on_click_get_back
+
+
+        self.manager.add(
+            arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box)
+            )
+
+
+    def on_click_get_back(self, event):
+        self.v_box.clear()
+        self.rules = False
+        create_buttons(self)
+
 
 
     def on_draw(self):
         self.clear()
         self.shapes.draw()          # Gradient BG
 
-        
+        if self.rules:
+            left, screen_width, bottom, screen_height = self.window.get_viewport()
+            arcade.draw_text("Congue inceptos orci quam mauris per vitae maecenas.",
+                            screen_width // 2, screen_height // 2 + 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+            arcade.draw_text("Dapibus sociosqu tristique hymenaeos bibendum commodo",
+                            screen_width // 2, screen_height // 2 + 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+            arcade.draw_text("semper nunc cum accumsan velit class commodo.",
+                            screen_width // 2, screen_height // 2 - 20, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+            arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
+                            screen_width // 2, screen_height // 2 - 60, font_name=FONT, font_size=SETTIGNS_FONT_SIZE, anchor_x="center")
+        if self.settings:
+            pass
 
         self.manager.draw()         # Buttons (menu)
         self.cursor_sprite.draw()   # должен быть последним!
