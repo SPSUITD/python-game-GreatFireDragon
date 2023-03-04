@@ -54,3 +54,8 @@ def draw_gradient_bg(self):
     gp_list = gp[0], gp[1], gp[2], gp[3]
     rect = arcade.create_rectangle_filled_with_colors(gp_list, GRADIENT_COLOR)
     self.shapes.append(rect)
+
+def get_back_button_create(self):
+    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
+    self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
+    get_back_button.on_click = self.on_click_get_back

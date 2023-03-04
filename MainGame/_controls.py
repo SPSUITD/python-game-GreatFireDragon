@@ -72,8 +72,10 @@ def on_key_press(self, symbol, modifiers):
         self.filter_on = not self.filter_on
     if symbol == arcade.key.ESCAPE:
         draw_gradient_bg(self)
-        self.manager.enable()
+        from ._pause_menu import create_buttons
+        create_buttons(self)
         self.on_pause = not self.on_pause
+        self.manager.enable() if self.on_pause else self.manager.disable()
         
     if symbol == arcade.key.UP:
         print("presed: UP")

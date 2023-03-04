@@ -46,10 +46,6 @@ class  MainGame(arcade.View):
         self.physics_engine = arcade.PymunkPhysicsEngine
         self.on_pause = False
 
-        # CREATE BUTTONS
-        from ._pause_menu import create_buttons
-        create_buttons(self)
-
     
         # SOUNDS
         # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")
@@ -63,6 +59,7 @@ class  MainGame(arcade.View):
     from ._on_update import on_update
     from ._on_draw import on_draw
     from ._controls import on_mouse_press, on_mouse_release, on_mouse_motion, on_mouse_enter, on_mouse_leave, on_key_press, on_key_release
+    from ._pause_menu import on_click_get_back
     # Здесь основная логика
 
 

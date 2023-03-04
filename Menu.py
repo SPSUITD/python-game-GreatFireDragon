@@ -13,7 +13,7 @@ from MainGame import MainGame
 from static.constants import *
 # import static.constants as const
 
-from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg
+from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg, get_back_button_create
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
     
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -40,10 +40,7 @@ width, height = arcade.window_commands.get_display_size()   # Window height and 
 
 
 
-def get_back_button_create(self):
-    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
-    self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
-    get_back_button.on_click = self.on_click_get_back
+
         
 class QuitButton(arcade.gui.UIFlatButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
@@ -159,13 +156,6 @@ class Menu(arcade.View):
 
     def on_click_get_back(self, event):
         self.v_box.clear()
-        if len(self.slider_widgets)>0:
-            for i in range(len(self.slider_widgets)):
-                self.manager.remove(self.slider_widgets[i])
-        self.rules = False
-        self.settings = False
-        create_buttons(self)
-
 
 
     def on_draw(self):
