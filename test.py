@@ -8,7 +8,7 @@ def qwe():
     importlib.reload(constant)
     
 
-print(data["FULLSCREEN_SCALE"], constant.BUTTON_HEIGHT, sep=" - ")
+print(data["fullscreen"], data["FULLSCREEN_SCALE"], const.BUTTON_HEIGHT, sep=" - ")
 print("------------")
 
 
@@ -23,4 +23,4 @@ with open("static/controls.json", "w") as jsonFile:     # чтобы было у
 
 qwe()
 
-print(data["FULLSCREEN_SCALE"], constant.BUTTON_HEIGHT, sep=" - ")
+print(data["fullscreen"], data["FULLSCREEN_SCALE"], const.BUTTON_HEIGHT, sep=" - ")

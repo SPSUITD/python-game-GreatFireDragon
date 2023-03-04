@@ -12,32 +12,32 @@ from Settings import Settings
 from Rules import Rules
 
 
-# from static.constants import *
-import static.constants as const
+from static.constants import *
+# import static.constants as const
 
 from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
     
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
+# FULLSCREEN TOGGLE TESTS (not working sadly)
+# def refresh_FS():
+#     importlib.reload(const)
 
-def refresh_FS():
-    importlib.reload(const)
+# BUTTON_WIDTH = const.BUTTON_WIDTH
+# BUTTON_HEIGHT = const.BUTTON_HEIGHT
+# BUTTON_MARGIN = const.BUTTON_MARGIN
 
-BUTTON_WIDTH = const.BUTTON_WIDTH
-BUTTON_HEIGHT = const.BUTTON_HEIGHT
-BUTTON_MARGIN = const.BUTTON_MARGIN
+# MENU_STYLE = const.MENU_STYLE
+# BG_MENU = const.BG_MENU
+# FS = const.FS
 
-MENU_STYLE = const.MENU_STYLE
-BG_MENU = const.BG_MENU
-FS = const.FS
+# SCREEN_WIDTH = const.SCREEN_WIDTH
+# SCREEN_HEIGHT = const.SCREEN_HEIGHT
+# SLIDER_HEIGHT = const.SLIDER_HEIGHT
+# SETTINGS_SLIDER_STYLE = const.SETTINGS_SLIDER_STYLE
 
-SCREEN_WIDTH = const.SCREEN_WIDTH
-SCREEN_HEIGHT = const.SCREEN_HEIGHT
-SLIDER_HEIGHT = const.SLIDER_HEIGHT
-SETTINGS_SLIDER_STYLE = const.SETTINGS_SLIDER_STYLE
-
-FONT, FONT_SIZE, SETTINGS_LABEL_STYLE = const.FONT, const.FONT_SIZE, const.SETTINGS_LABEL_STYLE
+# FONT, FONT_SIZE, SETTINGS_LABEL_STYLE = const.FONT, const.FONT_SIZE, const.SETTINGS_LABEL_STYLE
 
 
 
@@ -150,8 +150,7 @@ class Menu(arcade.View):
         with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
 
-        refresh_FS()
-        print(data["fullscreen"], data["FULLSCREEN_SCALE"], const.BUTTON_HEIGHT, sep=" - ")
+        arcade.exit()
 
     def on_click_rules(self, event):
         self.v_box.clear()
