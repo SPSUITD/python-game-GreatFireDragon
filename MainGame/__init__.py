@@ -26,7 +26,9 @@ class  MainGame(arcade.View):
         self.fruit_list = arcade.SpriteList(use_spatial_hash=False)
         self.active_fruits = arcade.SpriteList(use_spatial_hash=False)
         self.hoop = arcade.Sprite("images/basket.png", hit_box_algorithm='Detailed', hit_box_detail=4.5)
-        self.removed = False
+
+        # костыль для удобного удаления объектов из массивов
+        self.removed_from_engine = False
             
         # CURSOR
         self.window.set_mouse_visible(False)

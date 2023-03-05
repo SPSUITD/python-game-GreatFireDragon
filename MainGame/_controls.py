@@ -20,10 +20,10 @@ def on_mouse_press(self, x, y, button, key_modifiers):
     if len(fruits_at_cursor) > 0:
         primary_fruit = fruits_at_cursor[-1]
 
-        if not self.removed:
+        if not self.removed_from_engine:
             self.physics_engine.remove_sprite(primary_fruit)
             # primary_fruit.scale = FRUIT_HELD_SCALE
-            self.removed = True
+            self.removed_from_engine = True
 
 
         self.held_fruits.append(primary_fruit)
@@ -38,12 +38,10 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     if len(self.held_fruits) == 0:
         return
 
-    self.removed = False
     # self.held_fruits[0].scale = FRUIT_SCALE
-    try: 
+    if self.removed_from_engine:
         self.physics_engine.add_sprite(self.held_fruits[0])
-    except:
-        print("fruit in hoop")
+        self.removed_from_engine = False
     self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
 
     # print("fruit angle:", self.held_fruits[0].angle)

@@ -103,3 +103,10 @@ def swap_fruit_index(self, i):
     add_fruit_to_physics_engine(self, self.active_fruits[-1])
 
     respawn_fruit(self, self.active_fruits[-1])
+
+
+
+
+# EFFECTS
+def fruit_disappear(self, position):
+    pass

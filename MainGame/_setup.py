@@ -8,20 +8,6 @@ from GeneralModule import add_fruit_to_physics_engine
 
 
 def setup(self):
-    # self.held_fruits.pop()
-
-# LITTLE 16x16 FRUITS FROM STARDEW VALLEY
-    # for i in range(3):
-    #     for j in range(10):
-    #         for k in range(10):
-    #             try:
-    #                 fruit = arcade.Sprite(f"images/tile{i}{j}{k}.png")
-    #                 fruit.center_x = SCREEN_WIDTH / 2
-    #                 fruit.center_y = 2
-    #                 fruit.scale = 6
-    #                 self.fruit_list.append(fruit)
-    #             except Exception: break
-
     # PHISICS ENGINE
     damping = DEFAULT_DAMPING
     gravity = (0, -GRAVITY)
