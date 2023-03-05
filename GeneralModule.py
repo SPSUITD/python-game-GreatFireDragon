@@ -89,3 +89,17 @@ def add_fruit_to_physics_engine(self, fruit):
                                     max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
 
     return fruit
+
+# i → self.active_fruits[i]
+def swap_fruit_index(self, i):
+    random_index = random.randrange(0, len(self.fruit_list))
+
+    self.physics_engine.remove_sprite(self.active_fruits[i])
+    self.fruit_list.append(self.active_fruits[i])
+    self.active_fruits.pop(i)
+    
+    self.active_fruits.append(self.fruit_list[random_index])
+    self.fruit_list.pop(random_index)
+    add_fruit_to_physics_engine(self, self.active_fruits[-1])
+
+    respawn_fruit(self, self.active_fruits[-1])
