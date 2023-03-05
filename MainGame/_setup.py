@@ -30,13 +30,13 @@ def setup(self):
     fruit_path = "fruits/"
     dir_list = os.listdir(fruit_path)
 
-    for i in dir_list: 
-        fruit = arcade.Sprite(f"{fruit_path}{i}")
-        # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
-        fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-        fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
-        fruit.scale = FRUIT_SCALE
-        self.fruit_list.append(fruit)
+    # for i in dir_list: 
+    #     fruit = arcade.Sprite(f"{fruit_path}{i}")
+    #     # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
+    #     fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
+    #     fruit.center_y = random.normalvariate(SCREEN_HEIGHT/4, SCREEN_HEIGHT/4)
+    #     fruit.scale = FRUIT_SCALE
+    #     self.fruit_list.append(fruit)
         
 
 
@@ -45,7 +45,7 @@ def setup(self):
     test_fruit = arcade.Sprite("fruits/orange.png")
     test_fruit.center_x = SCREEN_WIDTH/2
     test_fruit.center_y = SCREEN_HEIGHT/2
-    test_fruit.scale = FRUIT_SCALE
+    test_fruit.scale = FRUIT_SCALE*2
     self.fruit_list.append(test_fruit)
     
     
@@ -65,11 +65,25 @@ def setup(self):
                                         mass=FRUIT_MASS,
                                         moment_of_inertia = FRUIT_MOMENT_OF_ENERTIA,
                                         # moment=arcade.PymunkPhysicsEngine.MOMENT_INF,
-                                        collision_type=f"fruit{i}",
+                                        collision_type="fruit",
                                         max_horizontal_velocity=FRUIT_MAX_HORIZONTAL_SPEED,
                                         max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
 
         self.physics_engine.apply_impulse(self.fruit_list[i], (0, 1000))
+
+
+    # COLLISION HANDLERS
+    def fruit_hit_handler(fruit_1, fruit_2, _arbiter, _space, _data):
+        """ Called for fruit/fruit collision """
+        # fruit_1.remove_from_sprite_lists()
+        # respawn_fruits(self)
+        # print("fruits collide")
+        pass
+
+    self.physics_engine.add_collision_handler("fruit", "fruit", post_handler=fruit_hit_handler)
+
+    
+
 
 
 

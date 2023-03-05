@@ -1,5 +1,6 @@
 import arcade
 import arcade.gui
+import random
 from pyglet.math import Vec2
 from static.constants import *
 import json
@@ -59,3 +60,18 @@ def get_back_button_create(self):
     get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
     get_back_button.on_click = self.on_click_get_back
+
+
+
+def respawn_fruits(self):
+    for fruit in self.fruit_list:
+        if fruit.position[1] < -200:
+            new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
+            if new_fruit_position < 0:
+                new_fruit_position = 0
+            if new_fruit_position > SCREEN_WIDTH:
+                new_fruit_position = SCREEN_WIDTH
+        
+            deviation = new_fruit_position - SCREEN_WIDTH/2
+            self.physics_engine.set_position(fruit, (new_fruit_position, -100))
+            self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))  
