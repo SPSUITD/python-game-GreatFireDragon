@@ -11,18 +11,20 @@ def on_update(self, delta_time):
     if self.on_pause:
         pass
     else:
-
-        # fruits_at_hoop = arcade.get_sprites_at_point(self.hoop.position, self.active_fruits)
-        # if len(fruits_at_hoop)>0:
-        #     print(f"fruit at hoop!")
-        #     # self.fruit_list.pop()
+        fruit_at_hoop = arcade.get_sprites_at_point(self.hoop.position, self.held_fruits)
+        # print(self.fruit_list)
+        if len(fruit_at_hoop)>0:
+            self.held_fruits.pop()
+            fruit_at_hoop[0].set_position(-200, random.randrange(200, 1000))
+            
+            self.physics_engine.add_sprite(fruit_at_hoop[0])
 
         self.physics_engine.step()
 
-# Если фрукт is OOB → 
-    for i in range(len(self.active_fruits)):
-        if self.active_fruits[i].position[1] < random.randrange(-500, -200):
-            swap_fruit_index(self, i)
+        # Если фрукт Out Of Bounds(OOB)
+        for i in range(len(self.active_fruits)):
+            if self.active_fruits[i].position[1] < random.randrange(-500, -200):
+                swap_fruit_index(self, i)
 
 
 

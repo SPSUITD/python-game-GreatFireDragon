@@ -8,7 +8,7 @@ from GeneralModule import add_fruit_to_physics_engine
 
 
 def setup(self):
-    self.held_fruits = []
+    # self.held_fruits.pop()
 
 # LITTLE 16x16 FRUITS FROM STARDEW VALLEY
     # for i in range(3):
@@ -35,20 +35,25 @@ def setup(self):
         fruit = arcade.Sprite(f"{fruit_path}{i}")
         # fruit.center_x = random.randrange(50, SCREEN_WIDTH-50)
         fruit.center_x = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-        fruit.center_y = 300
+        fruit.center_y = -200
         fruit.scale = FRUIT_SCALE
         self.fruit_list.append(fruit)
           
 
     # HOOP
-    self.hoop.center_x = SCREEN_WIDTH/1.1
+    self.hoop.center_x = SCREEN_WIDTH/1.3
     self.hoop.center_y = SCREEN_HEIGHT/1.5
     self.hoop.scale = 2*FS
-    self.physics_engine.add_sprite(self.hoop,
-                                    body_type = self.physics_engine.STATIC,
-                                    collision_type="hoop")
 
     
+    # ADDING FRUITS to physics engine
+    add_fruit_to_physics_engine(self, self.fruit_list[-1])
+    self.active_fruits.append(self.fruit_list[-1])
+    self.fruit_list.pop(-1)
+
+    add_fruit_to_physics_engine(self, self.fruit_list[-1])
+    self.active_fruits.append(self.fruit_list[-1])
+    self.fruit_list.pop(-1)
 
     add_fruit_to_physics_engine(self, self.fruit_list[-1])
     self.active_fruits.append(self.fruit_list[-1])
@@ -56,13 +61,13 @@ def setup(self):
 
 
 
-    # COLLISION HANDLERS
-    def fruit_hoop_handler(fruit, hoop, _arbiter, _space, _data):
-        # self.physics_engine.remove_sprite(fruit)
-        # respawn_fruit(self, fruit)
-        print("fruit and hoop collide")
+    # COLLISION HANDLERS (ATAVISM)
+    # def fruit_hoop_handler(fruit, hoop, _arbiter, _space, _data):
+    #     # self.physics_engine.remove_sprite(fruit)
+    #     # respawn_fruit(self, fruit)
+    #     print("fruit and hoop collide")
 
-    self.physics_engine.add_collision_handler("fruit", "hoop", post_handler=fruit_hoop_handler)
+    # self.physics_engine.add_collision_handler("fruit", "hoop", post_handler=fruit_hoop_handler)
 
     
 
