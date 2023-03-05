@@ -10,19 +10,17 @@ def on_draw(self):
         self.shapes.draw()
         self.manager.draw()
     else:
-        if self.filter_on:
-            self.crt_filter.use()
-            self.crt_filter.clear()
+        self.crt_filter.use()
+        self.crt_filter.clear()
 
-            self.hoop.draw()
-            self.fruit_list.draw()
+        self.hoop.draw()
+        self.active_fruits.draw()
+        self.fruit_list.draw()
+
         self.window.use()
         self.clear()
-        if self.filter_on:
-            self.crt_filter.draw()
-        else:
-            self.hoop.draw()
-            self.fruit_list.draw()
+        self.crt_filter.draw()
+            
 
     
     self.cursor_sprite.draw()   # должен быть последним!

@@ -5,7 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
-from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, pull_to_top, draw_gradient_bg
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
@@ -16,7 +16,7 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 def on_mouse_press(self, x, y, button, key_modifiers):
     on_mouse_basic_press(self, x, y, button, key_modifiers)
 
-    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.fruit_list) # error with fullscren so different method
+    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.active_fruits) # error with fullscren so different method
     if len(fruits_at_cursor) > 0:
         primary_fruit = fruits_at_cursor[-1]
 
@@ -27,7 +27,6 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
 
         self.held_fruits = [primary_fruit]
-        pull_to_top(self, self.held_fruits[0])
         self.held_fruits[0].turn_right(self.held_fruits[0].angle)
     else:
         self.mouse_is_pressed = True

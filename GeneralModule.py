@@ -7,6 +7,7 @@ import json
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
+# CURSOR FUNCTIONS
 def cursor_coordinates(self, x, y):
     # if self.window.fullscreen:        
     #     x = ( x / width ) * SCREEN_WIDTH
@@ -25,13 +26,6 @@ def is_cursor_hover_fruit(self, x, y):
     self.cursor_sprite.set_texture(cursor_N)
     cursor_coordinates(self, x, y)
 
-# В ситуации, когда мы кликнули на объект, который находистя позади 
-# другого объекта. Мы хотим, чтобы кликнутый нами "активный" объект
-# окахался наверху. Это приятнее для восприятия.
-def pull_to_top(self, fruit: arcade.Sprite):
-        self.fruit_list.remove(fruit)
-        self.fruit_list.append(fruit)
-
 
 def define_cursor(self):
     self.cursor_sprite.scale= CURSOR_SCALE
@@ -43,6 +37,7 @@ def define_cursor(self):
         self.cursor_sprite.append_texture(texture)
     self.cursor_sprite.set_texture(0)
 
+# GUI functions
 def draw_gradient_bg(self):
     f = open("static/controls.json")
     data = json.load(f)
@@ -62,16 +57,35 @@ def get_back_button_create(self):
     get_back_button.on_click = self.on_click_get_back
 
 
+# RESPAWN FRUITS WHEN THEY OFF THE SCREEN (y)
+def respawn_fruit(self, fruit):
+    
+    # self.physics_engine.remove_sprite(fruit)
 
-def respawn_fruits(self):
-    for fruit in self.fruit_list:
-        if fruit.position[1] < -200:
-            new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-            if new_fruit_position < 0:
-                new_fruit_position = 0
-            if new_fruit_position > SCREEN_WIDTH:
-                new_fruit_position = SCREEN_WIDTH
-        
-            deviation = new_fruit_position - SCREEN_WIDTH/2
-            self.physics_engine.set_position(fruit, (new_fruit_position, -100))
-            self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))  
+    new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
+    if new_fruit_position < 0:
+        new_fruit_position = 0
+    if new_fruit_position > SCREEN_WIDTH:
+        new_fruit_position = SCREEN_WIDTH
+
+    deviation = new_fruit_position - SCREEN_WIDTH/2
+    try:
+        self.physics_engine.set_position(fruit, (new_fruit_position, -100))
+        self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))  
+    except:
+        pass
+
+
+ # ADD FRUITS TO PHYSICS ENGINE
+def add_fruit_to_physics_engine(self, fruit):
+    self.physics_engine.add_sprite(fruit,
+                                    friction=FRUIT_FRICTION,
+                                    mass=FRUIT_MASS,
+                                    moment_of_inertia = FRUIT_MOMENT_OF_ENERTIA,
+                                    # moment=arcade.PymunkPhysicsEngine.MOMENT_INF,
+                                    elasticity= 0.5,
+                                    collision_type="fruit",
+                                    max_horizontal_velocity=FRUIT_MAX_HORIZONTAL_SPEED,
+                                    max_vertical_velocity=FRUIT_MAX_VERTICAL_SPEED)
+
+    return fruit

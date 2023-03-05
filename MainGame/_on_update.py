@@ -2,7 +2,7 @@
 import arcade
 import random
 from static.constants import *
-from GeneralModule import respawn_fruits
+from GeneralModule import respawn_fruit, add_fruit_to_physics_engine
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -18,22 +18,22 @@ def on_update(self, delta_time):
             # self.fruit_list.pop()
 
         self.physics_engine.step()
-        respawn_fruits(self)
 
-        # for fruit in self.fruit_list:
-        #     try:
-        #         if fruit.position[1] < -200:
-        #             new_fruit_position = random.normalvariate(SCREEN_WIDTH/2, SCREEN_WIDTH/4)
-        #             if new_fruit_position < 0:
-        #                 new_fruit_position = 0
-        #             if new_fruit_position > SCREEN_WIDTH:
-        #                 new_fruit_position = SCREEN_WIDTH
+# Если фрукт is OOB → 
+        random_index = random.randrange(0, len(self.fruit_list))
+        for i in range(len(self.active_fruits)):
+            if self.active_fruits[i].position[1] < random.randrange(-500, -200):
+
+                self.physics_engine.remove_sprite(self.active_fruits[i])
+                self.fruit_list.append(self.active_fruits[i])
+                self.active_fruits.pop(i)
                 
-        #             deviation = new_fruit_position - SCREEN_WIDTH/2
-        #             self.physics_engine.set_position(fruit, (new_fruit_position, -100))
-        #             self.physics_engine.set_velocity(fruit, (-deviation*1.4, FRUIT_IMPULSE))  
-        #     except:
-        #         pass
+                self.active_fruits.append(self.fruit_list[random_index])
+                self.fruit_list.pop(random_index)
+                add_fruit_to_physics_engine(self, self.active_fruits[-1])
+
+                respawn_fruit(self, self.active_fruits[-1])
+
 
 
 

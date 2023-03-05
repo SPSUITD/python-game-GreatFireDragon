@@ -18,12 +18,13 @@ class  MainGame(arcade.View):
         self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
                                     resolution_down_scale=3.0,
                                     hard_scan=-8.0, hard_pix=-3.0,
-                                    display_warp = Vec2(1.0 / 8.0, 1.0 / 8.0),
+                                    display_warp = Vec2(1.0 / 32.0, 1.0 / 24.0),
                                     mask_dark=0.5, mask_light=1.5)
         self.filter_on = False
         
         # OBJECTS
         self.fruit_list = arcade.SpriteList(use_spatial_hash=True)
+        self.active_fruits = arcade.SpriteList(use_spatial_hash=True)
         self.hoop = arcade.Sprite("images/hoop.png", hit_box_algorithm='Detailed')
         self.removed = False
             
