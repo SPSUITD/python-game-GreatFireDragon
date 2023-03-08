@@ -107,8 +107,3 @@ def swap_fruit_index(self, i):
     respawn_fruit(self, self.active_fruits[-1])
 
 
-
-
-# EFFECTS
-def fruit_disappear(self, position):
-    pass

@@ -45,6 +45,11 @@ def setup(self):
     self.active_fruits.append(self.fruit_list[-1])
     self.fruit_list.pop(-1)
 
+    # EFFECTS
+    self.fruit_pop.set_position(self.hoop.position[0], self.hoop.position[1])
+    self.fruit_pop.scale = 0.5
+    self.fruit_pop.set_texture(33)
+
 
 
     # COLLISION HANDLERS (ATAVISM)

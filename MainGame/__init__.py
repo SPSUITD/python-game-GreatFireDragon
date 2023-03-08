@@ -50,6 +50,11 @@ class  MainGame(arcade.View):
         self.on_pause = False
 
 
+        # EFFECTS
+        self.play_fruit_pop = 0
+        self.fruit_pop = arcade.load_animated_gif("images/sparkles.gif")
+
+
         # TIMER & SCORE
         self.gui = {
             "timer": 30.3,

@@ -6,7 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, fruit_disappear
+from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -19,10 +19,16 @@ def on_update(self, delta_time):
         # print(self.fruit_list)
         if len(fruit_at_hoop)>0:
             self.held_fruits.pop()
-            fruit_disappear(self, fruit_at_hoop[0].position)                                # animation
             fruit_at_hoop[0].set_position(-200, random.randrange(200, 1000))    # hide the fruit
             self.removed_from_engine = False
             self.physics_engine.add_sprite(fruit_at_hoop[0])
+
+            # ANIMATION ON
+            self.play_fruit_pop = 1
+            # SCORE
+            self.gui["score"] += int(fruit_at_hoop[0].scale*10/FS)
+            score = self.gui["score"]
+            self.gui["score_text"].text = f"{score} points"
 
         self.physics_engine.step()
 
@@ -56,10 +62,15 @@ def on_update(self, delta_time):
             view = EndScreen()
             self.window.show_view(view)
 
-        # SCORE
-        self.gui["score"] += 1
-        score = self.gui["score"]
-        self.gui["score_text"].text = f"{score} points"
+
+        # ANIMATIONS
+        if self.play_fruit_pop > 0:
+            self.fruit_pop.update_animation()
+            self.play_fruit_pop += 1
+
+            if self.play_fruit_pop > 85:
+                self.play_fruit_pop = 0
+
 
 
 
