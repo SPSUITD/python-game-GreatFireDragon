@@ -29,7 +29,7 @@ class  MainGame(arcade.View):
         # POWER-UPs
         self.power_up_list = arcade.SpriteList(use_spatial_hash=False)
         self.active_power_ups = arcade.SpriteList(use_spatial_hash=False)
-
+        self.current_power_up = None
         
 
         # для удобного удаления объектов из массивов

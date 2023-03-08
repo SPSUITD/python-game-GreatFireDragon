@@ -126,3 +126,5 @@ def add_power_up(self):
     self.power_up_list.pop(random_index)
     respawn_fruit(self, self.active_power_ups[-1])
     print("GM: power-up added!")
+
+    return random_index # This will become self.current_power_up

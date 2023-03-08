@@ -50,8 +50,9 @@ def setup(self):
     self.power_up_list.append(arcade.Sprite("images/clock.png"))
     for power_up in self.power_up_list:
         power_up.scale = POWER_UP_SCALE
-        power_up.center_x = 100
-        power_up.center_y = 100
+        power_up.center_x = -200
+        power_up.center_y = -200
+    
         
     
         

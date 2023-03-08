@@ -79,20 +79,22 @@ def on_update(self, delta_time):
         # ADDING MORE POWER-UPs
         if seconds % 5 == 0:
             if not self.power_up_added:
-                add_power_up(self)
+                self.current_power_up = add_power_up(self)
                 self.power_up_added = True
         else:
             self.power_up_added = False
 
-        # Если фрукт Out Of Bounds(OOB)
+
+
+
+
+        # Если POWER-UP Out Of Bounds(OOB)
         for i in range(len(self.active_power_ups)):
             if self.active_power_ups[i].position[1] < random.randrange(OOB_START, OOB_OVER):
                 self.physics_engine.remove_sprite(self.active_power_ups[i])
                 self.power_up_list.append(self.active_power_ups[i])
                 self.power_up_list[-1].set_position(0, -200)
                 self.active_power_ups.pop(i)
-
-
 
 
         # ANIMATIONS

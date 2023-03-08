@@ -16,7 +16,8 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
 def on_mouse_press(self, x, y, button, key_modifiers):
     on_mouse_basic_press(self, x, y, button, key_modifiers)
 
-    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.active_fruits) # error with fullscren so different method
+    # FRUITS GRABBING
+    fruits_at_cursor = arcade.get_sprites_at_point((x, y), self.active_fruits)
     if len(fruits_at_cursor) > 0:
         primary_fruit = fruits_at_cursor[-1]
 
@@ -28,6 +29,19 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
         self.held_fruits.append(primary_fruit)
         self.held_fruits[0].turn_right(self.held_fruits[0].angle)
+    else:
+        self.mouse_is_pressed = True
+
+    # POWER-UPs GRABBING
+    power_ups_at_cursor = arcade.get_sprites_at_point((x, y), self.active_power_ups)
+    if len(power_ups_at_cursor) > 0:
+        power_up = power_ups_at_cursor[0]
+        self.physics_engine.remove_sprite(power_up)
+        self.power_up_list.insert(self.current_power_up, power_up)
+        self.power_up_list[self.current_power_up].center_y = -200
+        self.active_power_ups.pop()
+        
+        
     else:
         self.mouse_is_pressed = True
 
