@@ -23,6 +23,7 @@ def on_draw(self):
         self.fruit_list.draw()
 
         self.gui["timer_text"].draw()
+        self.gui["score_text"].draw()
         self.cursor_sprite.draw()   # должен быть последним!
 
         self.window.use()

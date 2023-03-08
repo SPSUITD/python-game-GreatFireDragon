@@ -11,7 +11,7 @@ FS = data["FULLSCREEN_SCALE"]
 # Главная информация
 SCREEN_WIDTH = int(1024*FS)
 SCREEN_HEIGHT = int(576*FS)
-SCREEN_TITLE = "Drag and Drop Cards"
+SCREEN_TITLE = "Fruit Catcher"
 BG_MAINGAME = arcade.color.AMAZON
 BG_MENU = arcade.color.DARK_BLUE_GRAY
 FONT = "Kenney Blocks"

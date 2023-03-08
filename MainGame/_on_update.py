@@ -32,7 +32,7 @@ def on_update(self, delta_time):
                 swap_fruit_index(self, i)
 
 
-        # TIMER & TEXT
+        # TIMER
         self.gui["timer"] -= delta_time
         minutes = int(self.gui["timer"]) // 60
         seconds = int(self.gui["timer"]) % 60
@@ -55,6 +55,11 @@ def on_update(self, delta_time):
             from EndScreen import EndScreen
             view = EndScreen()
             self.window.show_view(view)
+
+        # SCORE
+        self.gui["score"] += 1
+        score = self.gui["score"]
+        self.gui["score_text"].text = f"{score} points"
 
 
 

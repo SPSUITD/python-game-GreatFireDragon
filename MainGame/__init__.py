@@ -52,7 +52,7 @@ class  MainGame(arcade.View):
 
         # TIMER & SCORE
         self.gui = {
-            "timer": 0.3,
+            "timer": 30.3,
             "timer_text": arcade.Text(
                                 text="00:00:00",
                                 start_x= 100*FS,
@@ -61,7 +61,15 @@ class  MainGame(arcade.View):
                                 font_size=FONT_SIZE*2,
                                 anchor_x="center",
                             ),
-            "score": 0
+            "score": 0,
+            "score_text": arcade.Text(
+                                text="0",
+                                start_x= SCREEN_WIDTH - 110*FS,
+                                start_y= 50*FS,
+                                color=arcade.color.ORANGE_PEEL,
+                                font_size=FONT_SIZE*2,
+                                anchor_x="center",
+                            )
         }
         
 
