@@ -16,7 +16,7 @@ class  MainGame(arcade.View):
 
         # CRT filter
         self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                    resolution_down_scale=3.0*FS,
+                                    resolution_down_scale=1.0*FS,
                                     hard_scan=-8.0*FS, hard_pix=-3.0*FS,
                                     display_warp = Vec2(1.0 / 32.0, 1.0 / 18.0),
                                     mask_dark=0.5, mask_light=1.5)

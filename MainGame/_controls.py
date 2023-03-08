@@ -5,7 +5,7 @@ import json
 f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
-from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg
+from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg, add_fruit
 from GeneralModule import big_basket, x2_fruits, more_time
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -66,13 +66,11 @@ def on_mouse_release(self, x: float, y: float, button: int, modifiers: int):
     if len(self.held_fruits) == 0:
         return
 
-    # self.held_fruits[0].scale = FRUIT_SCALE
     if self.removed_from_engine:
         self.physics_engine.add_sprite(self.held_fruits[0])
         self.removed_from_engine = False
     self.physics_engine.apply_impulse(self.held_fruits[0], list(map(lambda x: x * 50, self.cursor_delta)))
 
-    # print("fruit angle:", self.held_fruits[0].angle)
 
     self.held_fruits.pop()
     is_cursor_hover_fruit(self, x, y)
@@ -86,9 +84,6 @@ def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
         fruit.center_x += dx
         fruit.center_y += dy
 
-    # if self.window.fullscreen:        
-    #     dx = ( dx / width ) * SCREEN_WIDTH
-    #     dy = ( dy / height ) * SCREEN_HEIGHT
     self.cursor_delta = [dx, dy]    # Чтобы в on_mouse_release можно было передать фрукту какую-то скорость
     
 
@@ -113,6 +108,8 @@ def on_key_press(self, symbol, modifiers):
         self.gui["timer"] = 0
     if symbol == arcade.key.K and modifiers & arcade.key.MOD_SHIFT:
         self.gui["score"] = 420
+    if symbol == arcade.key.UP and modifiers & arcade.key.MOD_SHIFT:
+        add_fruit(self)
         
     if symbol == arcade.key.UP:
         print("presed: UP")
