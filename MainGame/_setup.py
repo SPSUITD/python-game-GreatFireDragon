@@ -14,7 +14,7 @@ def setup(self):
     self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
 
  # BIG FRUITS
-    fruit_path = "same_sized_fruits/"
+    fruit_path = "fruits/"
     dir_list = os.listdir(fruit_path)
 
     for i in dir_list: 

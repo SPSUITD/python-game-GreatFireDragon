@@ -10,8 +10,8 @@ __pycache__/*
 
 
 # Файлы установки
-main.build/*
-main.dist/*
+build/*
+dist/*
 
 # tests
 tests
