@@ -12,7 +12,7 @@ class  MainGame(arcade.View):
 
     def __init__(self):
         super().__init__()
-        arcade.set_background_color(BG_MAINGAME)
+        # arcade.set_background_color(BG_MAINGAME)
 
         # CRT filter
         self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -26,6 +26,8 @@ class  MainGame(arcade.View):
         self.fruit_list = arcade.SpriteList(use_spatial_hash=False)
         self.active_fruits = arcade.SpriteList(use_spatial_hash=False)
         self.basket = arcade.Sprite("images/basket.png", hit_box_algorithm='Detailed', hit_box_detail=4.5)
+        # POWER-UPs
+        self.power_ups = arcade.SpriteList(use_spatial_hash=False)
 
         self.fruit_added = False
 
@@ -54,6 +56,9 @@ class  MainGame(arcade.View):
         # EFFECTS
         self.play_fruit_pop = 0
         self.fruit_pop = arcade.load_animated_gif("images/sparkles.gif")
+
+        
+
 
 
         # TIMER & SCORE

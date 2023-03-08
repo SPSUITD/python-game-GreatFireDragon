@@ -18,24 +18,6 @@ from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse
     
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
-# FULLSCREEN TOGGLE TESTS (not working sadly)
-# def refresh_FS():
-#     importlib.reload(const)
-
-# BUTTON_WIDTH = const.BUTTON_WIDTH
-# BUTTON_HEIGHT = const.BUTTON_HEIGHT
-# BUTTON_MARGIN = const.BUTTON_MARGIN
-
-# MENU_STYLE = const.MENU_STYLE
-# BG_MENU = const.BG_MENU
-# FS = const.FS
-
-# SCREEN_WIDTH = const.SCREEN_WIDTH
-# SCREEN_HEIGHT = const.SCREEN_HEIGHT
-# SLIDER_HEIGHT = const.SLIDER_HEIGHT
-# SETTINGS_SLIDER_STYLE = const.SETTINGS_SLIDER_STYLE
-
-# FONT, FONT_SIZE, SETTINGS_LABEL_STYLE = const.FONT, const.FONT_SIZE, const.SETTINGS_LABEL_STYLE
 
 
 
@@ -90,6 +72,7 @@ class Menu(arcade.View):
         # CREATE BUTTONS
         create_buttons(self)
         self.slider_widgets = []
+
 
         
 

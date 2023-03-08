@@ -28,7 +28,7 @@ def setup(self):
 
     # basket
     teleport_basket(self)
-    self.basket.scale = 0.2*FS
+    self.basket.scale = 0.1*FS
 
     
     # ADDING FRUITS to physics engine
@@ -44,9 +44,19 @@ def setup(self):
     self.active_fruits.append(self.fruit_list[-1])
     self.fruit_list.pop(-1)
 
+    # POWER-UPs
+    self.power_ups.append(arcade.Sprite("images/arrow.png"))
+    self.power_ups.append(arcade.Sprite("images/x2.png"))
+    self.power_ups.append(arcade.Sprite("images/clock.png"))
+    for power_up in self.power_ups:
+        power_up.scale = POWER_UP_SCALE
+
+    self.power_ups[0].center_x = SCREEN_WIDTH//2
+    self.power_ups[0].center_y = SCREEN_HEIGHT//2
+
     # EFFECTS
     self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])
-    self.fruit_pop.scale = 0.5
+    self.fruit_pop.scale = 0.3
     self.fruit_pop.set_texture(33)
 
 
