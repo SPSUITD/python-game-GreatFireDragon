@@ -45,14 +45,16 @@ def setup(self):
     self.fruit_list.pop(-1)
 
     # POWER-UPs
-    self.power_ups.append(arcade.Sprite("images/arrow.png"))
-    self.power_ups.append(arcade.Sprite("images/x2.png"))
-    self.power_ups.append(arcade.Sprite("images/clock.png"))
-    for power_up in self.power_ups:
+    self.power_up_list.append(arcade.Sprite("images/arrow.png"))
+    self.power_up_list.append(arcade.Sprite("images/x2.png"))
+    self.power_up_list.append(arcade.Sprite("images/clock.png"))
+    for power_up in self.power_up_list:
         power_up.scale = POWER_UP_SCALE
-
-    self.power_ups[0].center_x = SCREEN_WIDTH//2
-    self.power_ups[0].center_y = SCREEN_HEIGHT//2
+        power_up.center_x = 100
+        power_up.center_y = 100
+        
+    
+        
 
     # EFFECTS
     self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])

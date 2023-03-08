@@ -27,12 +27,15 @@ class  MainGame(arcade.View):
         self.active_fruits = arcade.SpriteList(use_spatial_hash=False)
         self.basket = arcade.Sprite("images/basket.png", hit_box_algorithm='Detailed', hit_box_detail=4.5)
         # POWER-UPs
-        self.power_ups = arcade.SpriteList(use_spatial_hash=False)
+        self.power_up_list = arcade.SpriteList(use_spatial_hash=False)
+        self.active_power_ups = arcade.SpriteList(use_spatial_hash=False)
 
-        self.fruit_added = False
+        
 
         # для удобного удаления объектов из массивов
         self.removed_from_engine = False
+        self.fruit_added = False
+        self.power_up_added = False
             
         # CURSOR
         self.window.set_mouse_visible(False)
@@ -63,7 +66,7 @@ class  MainGame(arcade.View):
 
         # TIMER & SCORE
         self.gui = {
-            "timer": 25.3,
+            "timer": 125.3,
             "timer_text": arcade.Text(
                                 text="00:00:00",
                                 start_x= 100*FS,

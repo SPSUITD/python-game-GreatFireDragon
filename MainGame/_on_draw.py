@@ -20,9 +20,10 @@ def on_draw(self):
 
         self.active_fruits.draw()
         # self.active_fruits.draw_hit_boxes([255,0,0], 3)
-        self.fruit_list.draw()
-        self.power_ups.draw()
-        self.power_ups.draw_hit_boxes([255,0,0], 3)
+        # self.fruit_list.draw()
+        # self.power_up_list.draw()
+        self.active_power_ups.draw()
+        # self.power_up_list.draw_hit_boxes([255,0,0], 3)
 
         self.gui["timer_text"].draw()
         self.gui["score_text"].draw()

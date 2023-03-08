@@ -112,8 +112,17 @@ def add_fruit(self):
     self.active_fruits.append(self.fruit_list[random_index])
     add_fruit_to_physics_engine(self, self.active_fruits[-1])
     self.fruit_list.pop(random_index)
-    print("fruit added!")
+    print("GM: fruit added!")
 
 def teleport_basket(self):
     self.basket.center_x = random.randrange(int(SCREEN_WIDTH*0.1), int(SCREEN_WIDTH*0.9))
     self.basket.center_y = random.randrange(int(SCREEN_HEIGHT*0.1), int(SCREEN_HEIGHT*0.9))
+
+
+def add_power_up(self):
+    random_index = random.randrange(0, len(self.power_up_list))
+    self.active_power_ups.append(self.power_up_list[random_index])
+    add_fruit_to_physics_engine(self, self.active_power_ups[-1])
+    self.power_up_list.pop(random_index)
+    respawn_fruit(self, self.active_power_ups[-1])
+    print("GM: power-up added!")

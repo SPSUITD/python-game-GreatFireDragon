@@ -6,7 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, teleport_basket
+from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, add_power_up, teleport_basket
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -41,7 +41,7 @@ def on_update(self, delta_time):
 
         # Если фрукт Out Of Bounds(OOB)
         for i in range(len(self.active_fruits)):
-            if self.active_fruits[i].position[1] < random.randrange(-500, -200):
+            if self.active_fruits[i].position[1] < random.randrange(OOB_START, OOB_OVER):
                 swap_fruit_index(self, i)
 
 
@@ -69,12 +69,28 @@ def on_update(self, delta_time):
             view = EndScreen()
             self.window.show_view(view)
 
+        # ADDING MORE FRUITS
         if seconds % 20 == 0:
             if not self.fruit_added:
                 add_fruit(self)
                 self.fruit_added = True
         else:
             self.fruit_added = False
+        # ADDING MORE POWER-UPs
+        if seconds % 5 == 0:
+            if not self.power_up_added:
+                add_power_up(self)
+                self.power_up_added = True
+        else:
+            self.power_up_added = False
+
+        # Если фрукт Out Of Bounds(OOB)
+        for i in range(len(self.active_power_ups)):
+            if self.active_power_ups[i].position[1] < random.randrange(OOB_START, OOB_OVER):
+                self.physics_engine.remove_sprite(self.active_power_ups[i])
+                self.power_up_list.append(self.active_power_ups[i])
+                self.power_up_list[-1].set_position(0, -200)
+                self.active_power_ups.pop(i)
 
 
 
