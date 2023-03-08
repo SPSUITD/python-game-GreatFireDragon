@@ -26,6 +26,9 @@ def on_update(self, delta_time):
             # ANIMATION ON
             self.play_fruit_pop = 1
             # SCORE
+            self.added_score_player = self.added_score.play()
+            self.added_score.set_volume(data["volume"], self.added_score_player)
+
             self.gui["score"] += int(fruit_at_hoop[0].scale*10/FS)
             score = self.gui["score"]
             self.gui["score_text"].text = f"{score:02d} points"

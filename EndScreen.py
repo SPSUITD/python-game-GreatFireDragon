@@ -54,6 +54,13 @@ class EndScreen(arcade.View):
         # POINTS ANIMATION
         self.score = 0
 
+        # SOUNDS
+        if 0 < data["score"]:
+            self.slot_machine = arcade.load_sound("sounds/slot_machine.wav")
+            self.slot_machine_player = self.slot_machine.play()
+            self.slot_machine.set_volume(data["volume"], self.slot_machine_player)
+        
+
         
 
     def on_click_start(self, event):
@@ -86,6 +93,11 @@ class EndScreen(arcade.View):
     def on_update(self, delta_time):
         if self.score < data["score"]:
             self.score += 1
+            if self.slot_machine.is_complete(self.slot_machine_player):
+                self.slot_machine_player = self.slot_machine.play()
+                self.slot_machine.set_volume(data["volume"], self.slot_machine_player)
+        else:
+            self.slot_machine.stop(self.slot_machine_player)
 
 
     

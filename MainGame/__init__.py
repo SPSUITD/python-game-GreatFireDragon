@@ -81,11 +81,9 @@ class  MainGame(arcade.View):
 
     
         # SOUNDS
-        # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")
-        # self.main_theme_player = self.main_theme_sound.play()
-        # f = open("static/controls.json")
-        # data = json.load(f)
-        # self.main_theme_sound.set_volume(data["volume"], self.main_theme_player)
+        self.added_score = arcade.load_sound("sounds/added_score.wav")
+       
+        
 
     
     from ._setup import setup
