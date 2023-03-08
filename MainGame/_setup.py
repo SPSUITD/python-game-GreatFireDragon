@@ -3,7 +3,7 @@ import arcade
 import os
 import random
 from static.constants import *
-from GeneralModule import add_fruit_to_physics_engine
+from GeneralModule import add_fruit_to_physics_engine, teleport_basket
 
 
 
@@ -27,9 +27,8 @@ def setup(self):
           
 
     # basket
-    self.basket.center_x = SCREEN_WIDTH/1.3
-    self.basket.center_y = SCREEN_HEIGHT/1.5
-    self.basket.scale = 0.1*FS
+    teleport_basket(self)
+    self.basket.scale = 0.2*FS
 
     
     # ADDING FRUITS to physics engine

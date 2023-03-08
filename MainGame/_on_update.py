@@ -6,7 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit
+from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, teleport_basket
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -23,7 +23,10 @@ def on_update(self, delta_time):
             fruit_at_basket[0].set_position(-200, random.randrange(200, 1000))    # hide the fruit
             self.removed_from_engine = False
             self.physics_engine.add_sprite(fruit_at_basket[0])
+            # TELEPORT BASKET
+            teleport_basket(self)
             # ANIMATION ON
+            self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])
             self.play_fruit_pop = 1
             # SCORE
             self.added_score_player = self.added_score.play()
@@ -32,7 +35,7 @@ def on_update(self, delta_time):
             self.gui["score"] += int(fruit_at_basket[0].scale*10/FS)
             score = self.gui["score"]
             self.gui["score_text"].text = f"{score:02d} points"
-            # TELEPORT BASKET
+            
 
         self.physics_engine.step()
 
@@ -72,8 +75,7 @@ def on_update(self, delta_time):
                 self.fruit_added = True
         else:
             self.fruit_added = False
-            
-        print(seconds%20, self.fruit_added)
+
 
 
 
