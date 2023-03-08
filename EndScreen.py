@@ -70,7 +70,13 @@ class EndScreen(arcade.View):
         self.shapes.draw()          # Gradient BG
 
         arcade.draw_text("CONGRATULATIONS",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE*3, anchor_x="center")
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 150*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*2, anchor_x="center")
+        score = data["score"]
+        highest_score = data["highest_score"]
+        arcade.draw_text(f"You scored {score}",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 70*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*3, anchor_x="center")
+        arcade.draw_text(f"Highest score is {highest_score}",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 0*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*2, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!

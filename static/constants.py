@@ -16,6 +16,7 @@ BG_MAINGAME = arcade.color.AMAZON
 BG_MENU = arcade.color.DARK_BLUE_GRAY
 FONT = "Kenney Blocks"
 
+
 # Scaling
 CURSOR_SCALE = 1*FS
 HOOP_SCALE = 0.2*FS
