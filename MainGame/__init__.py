@@ -92,6 +92,7 @@ class  MainGame(arcade.View):
         # SOUNDS
         self.added_score = arcade.load_sound("sounds/added_score.wav")
         self.power_up_sound = arcade.load_sound("sounds/bonus.mp3")
+        self.test_sound = arcade.load_sound("sounds/notification.wav")
        
 
     

@@ -39,6 +39,10 @@ def create_buttons(self):
     self.v_box.add(rules_button.with_space_around(bottom=BUTTON_MARGIN))
     rules_button.on_click = self.on_click_rules
 
+    controls_button = arcade.gui.UIFlatButton(text="Controls", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
+    self.v_box.add(controls_button.with_space_around(bottom=BUTTON_MARGIN))
+    controls_button.on_click = self.on_click_controles
+
     settings_button = arcade.gui.UIFlatButton(text="Settings", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(settings_button.with_space_around(bottom=BUTTON_MARGIN))
     settings_button.on_click = self.on_click_settings
@@ -55,6 +59,7 @@ class Menu(arcade.View):
 
         self.rules = False
         self.settings = False
+        self.controls = False
 
         # CURSOR
         self.window.set_mouse_visible(False)
@@ -137,6 +142,12 @@ class Menu(arcade.View):
         get_back_button_create(self)
         self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
 
+    def on_click_controles(self, event):
+        self.v_box.clear()
+        self.controls = True
+        get_back_button_create(self)
+        self.manager.add(arcade.gui.UIAnchorWidget(anchor_x="center_x", anchor_y="bottom", child=self.v_box))
+
 
     def on_click_get_back(self, event):
         self.v_box.clear()
@@ -145,6 +156,7 @@ class Menu(arcade.View):
                 self.manager.remove(self.slider_widgets[i])
         self.rules = False
         self.settings = False
+        self.controls = False
         create_buttons(self)
 
 
@@ -155,7 +167,11 @@ class Menu(arcade.View):
         if self.rules:
             left, screen_width, bottom, screen_height = self.window.get_viewport()
             arcade.draw_text("Catch fruits (left click) and bring them to the basket.\nBasket will not stay at one place!\nYour objective is to catch as much fruits as you can untill timer runs off.\nCatch power-ups for help!\nGood luck!",
-                            screen_width // 2, screen_height // 2 + 150*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*1.3, anchor_x="center", multiline=True, width=SCREEN_WIDTH*0.9)
+                            screen_width // 2, screen_height // 2 + 20*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*1.3, anchor_x="center", anchor_y="center", multiline=True, width=SCREEN_WIDTH*0.9)
+        if self.controls:
+            left, screen_width, bottom, screen_height = self.window.get_viewport()
+            arcade.draw_text("ESC — pause game\nArrow UP↑ — increase volume (+5%)\nArrow DOWN↓ — decrease volume (-5%)\n\n-------c-h-e-a-t-s-------\n\nshift + J — add fruits (can crash the game)\nshift + L — end game\nshift + K — add 10 points",
+                            screen_width // 2, screen_height // 2 + 20*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*1.3, anchor_x="center", anchor_y="center", multiline=True, width=SCREEN_WIDTH*0.9)
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
                          SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")

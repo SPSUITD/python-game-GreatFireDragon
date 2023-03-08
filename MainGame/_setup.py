@@ -14,7 +14,6 @@ def setup(self):
     self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
 
  # BIG FRUITS
-    # fruit_path = "fruits/"
     fruit_path = "same_sized_fruits/"
     dir_list = os.listdir(fruit_path)
 
@@ -54,24 +53,11 @@ def setup(self):
         power_up.center_x = -200
         power_up.center_y = -200
     
-        
-    
-        
 
     # EFFECTS
     self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])
     self.fruit_pop.scale = FRUIT_POP_SCALE
     self.fruit_pop.set_texture(33)
-
-
-
-    # COLLISION HANDLERS (ATAVISM)
-    # def fruit_basket_handler(fruit, basket, _arbiter, _space, _data):
-    #     # self.physics_engine.remove_sprite(fruit)
-    #     # respawn_fruit(self, fruit)
-    #     print("fruit and basket collide")
-
-    # self.physics_engine.add_collision_handler("fruit", "basket", post_handler=fruit_basket_handler)
 
 
 

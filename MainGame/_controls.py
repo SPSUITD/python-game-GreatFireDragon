@@ -107,14 +107,26 @@ def on_key_press(self, symbol, modifiers):
     if symbol == arcade.key.L and modifiers & arcade.key.MOD_SHIFT:
         self.gui["timer"] = 0
     if symbol == arcade.key.K and modifiers & arcade.key.MOD_SHIFT:
-        self.gui["score"] = 420
-    if symbol == arcade.key.UP and modifiers & arcade.key.MOD_SHIFT:
+        self.gui["score"] += 10
+    if symbol == arcade.key.J and modifiers & arcade.key.MOD_SHIFT:
         add_fruit(self)
         
+
     if symbol == arcade.key.UP:
-        print("presed: UP")
+        if not data["volume"] > 0.945:
+            data["volume"] += 0.05
+            with open("static/controls.json", "w") as jsonFile:
+                json.dump(data, jsonFile)
+        test_sound_player = self.test_sound.play()
+        self.test_sound.set_volume(data["volume"], test_sound_player)
+        
     if symbol == arcade.key.DOWN:
-        print("pressed: DOWN")
+        if not data["volume"] < 0.051:
+            data["volume"] -= 0.05
+            with open("static/controls.json", "w") as jsonFile:
+                json.dump(data, jsonFile)
+        test_sound_player = self.test_sound.play()
+        self.test_sound.set_volume(data["volume"], test_sound_player)
     
         
 def on_key_release(self, symbol, modifiers):
