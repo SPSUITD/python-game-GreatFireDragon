@@ -29,6 +29,8 @@ def is_cursor_hover_fruit(self, x, y):
 
 def define_cursor(self):
     self.cursor_sprite.scale= CURSOR_SCALE
+    # self.cursor_sprite.center_x = SCREEN_WIDTH//2
+    # self.cursor_sprite.center_y = SCREEN_HEIGHT//2
     for i in range(1,4):
         texture = arcade.load_texture(
                 f"images/HANDS_CURSOR_{i}.png",
@@ -51,8 +53,8 @@ def draw_gradient_bg(self):
     rect = arcade.create_rectangle_filled_with_colors(gp_list, GRADIENT_COLOR)
     self.shapes.append(rect)
 
-def get_back_button_create(self):
-    get_back_button = arcade.gui.UIFlatButton(text="← Get Back", width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
+def get_back_button_create(self, button_text="← Get Back"):
+    get_back_button = arcade.gui.UIFlatButton(text=button_text, width=BUTTON_WIDTH, height=BUTTON_HEIGHT, style=MENU_STYLE)
     self.v_box.add(get_back_button.with_space_around(bottom=BUTTON_MARGIN))
     get_back_button.on_click = self.on_click_get_back
 

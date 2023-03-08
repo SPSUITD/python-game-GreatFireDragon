@@ -49,6 +49,23 @@ class  MainGame(arcade.View):
         self.physics_engine = arcade.PymunkPhysicsEngine
         self.on_pause = False
 
+
+        # TIMER & SCORE
+        self.gui = {
+            "timer": 1.0,
+            "timer_text": arcade.Text(
+                                text="00:00:00",
+                                start_x= 100*FS,
+                                start_y= 50*FS,
+                                color=arcade.color.ORANGE_PEEL,
+                                font_size=FONT_SIZE*2,
+                                anchor_x="center",
+                            ),
+            "score": 0
+        }
+        
+
+
     
         # SOUNDS
         # self.main_theme_sound = arcade.load_sound("sounds/HARDCORE!!!.mp3")

@@ -9,6 +9,8 @@ def on_draw(self):
         self.clear()
         self.shapes.draw()
         self.manager.draw()
+
+        self.cursor_sprite.draw()   # должен быть последним!
     else:
         self.crt_filter.use()
         self.crt_filter.clear()
@@ -20,12 +22,15 @@ def on_draw(self):
         self.active_fruits.draw_hit_boxes([255,0,0], 3)
         self.fruit_list.draw()
 
+        self.gui["timer_text"].draw()
+        self.cursor_sprite.draw()   # должен быть последним!
+
         self.window.use()
         self.clear()
+        
         self.crt_filter.draw()
             
 
     
-    self.cursor_sprite.draw()   # должен быть последним!
 
 

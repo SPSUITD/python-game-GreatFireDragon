@@ -1,6 +1,10 @@
 # modules
 import arcade
 import random
+import json
+f = open("static/controls.json")
+data = json.load(f)
+
 from static.constants import *
 from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, fruit_disappear
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -27,6 +31,30 @@ def on_update(self, delta_time):
             if self.active_fruits[i].position[1] < random.randrange(-500, -200):
                 swap_fruit_index(self, i)
 
+
+        # TIMER & TEXT
+        self.gui["timer"] -= delta_time
+        minutes = int(self.gui["timer"]) // 60
+        seconds = int(self.gui["timer"]) % 60
+        seconds_100s = int((self.gui["timer"] - seconds) * 100)
+        self.gui["timer_text"].text = f"{minutes:02d}:{seconds:02d}:{seconds_100s:02d}"
+
+        if self.gui["timer"] < 10:
+            if self.gui["timer"]*10 % 2 > 1:
+                self.gui["timer_text"].color = arcade.color.RED
+            else:
+                self.gui["timer_text"].color = arcade.color.ORANGE_RED
+
+        if self.gui["timer"] < 0:
+            data["score"] = self.gui["score"]
+            if self.gui["score"] > data["highest_score"]:
+                data["highest_score"] = self.gui["score"]
+            with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+                json.dump(data, jsonFile)
+
+            from EndScreen import EndScreen
+            view = EndScreen()
+            self.window.show_view(view)
 
 
 
