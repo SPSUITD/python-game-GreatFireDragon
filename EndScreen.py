@@ -55,10 +55,9 @@ class EndScreen(arcade.View):
         self.score = 0
 
         # SOUNDS
-        if 0 < data["score"]:
-            self.slot_machine = arcade.load_sound("sounds/slot_machine.wav")
-            self.slot_machine_player = self.slot_machine.play()
-            self.slot_machine.set_volume(data["volume"], self.slot_machine_player)
+        self.slot_machine = arcade.load_sound("sounds/slot_machine.wav")
+        self.slot_machine_player = self.slot_machine.play()
+        self.slot_machine.set_volume(data["volume"], self.slot_machine_player)
         
 
         
@@ -80,12 +79,14 @@ class EndScreen(arcade.View):
         self.shapes.draw()          # Gradient BG
 
         arcade.draw_text("CONGRATULATIONS",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 150*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*2, anchor_x="center")
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 200*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*2, anchor_x="center")
         highest_score = data["highest_score"]
-        arcade.draw_text(f"You scored {self.score:02d}",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 70*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*3, anchor_x="center")
+        arcade.draw_text(f"YOU SCORED",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 130*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*3, anchor_x="center")
+        arcade.draw_text(f"{self.score:02d}",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 60*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*3, color=arcade.color.RED, anchor_x="center")
         arcade.draw_text(f"Highest score is {highest_score}",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 0*FS, font_name=("Kenney Future", "comic"), font_size=FONT_SIZE*2, anchor_x="center")
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 0*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*2, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!

@@ -107,3 +107,11 @@ def swap_fruit_index(self, i):
     respawn_fruit(self, self.active_fruits[-1])
 
 
+def add_fruit(self):
+    random_index = random.randrange(0, len(self.fruit_list))
+    self.active_fruits.append(self.fruit_list[random_index])
+    add_fruit_to_physics_engine(self, self.active_fruits[-1])
+    self.fruit_list.pop(random_index)
+
+    # print(len(self.fruit_list))
+    # print(len(self.active_fruits))

@@ -15,11 +15,12 @@ SCREEN_TITLE = "Fruit Catcher"
 BG_MAINGAME = arcade.color.AMAZON
 BG_MENU = arcade.color.DARK_BLUE_GRAY
 FONT = "Kenney Blocks"
+FONT_FUTURE = ("Kenney Future", "comic")
 
 
 # Scaling
 CURSOR_SCALE = 1*FS
-HOOP_SCALE = 0.2*FS
+basket_SCALE = 0.2*FS
 FRUIT_SCALE = 0.4*FS
 FRUIT_HELD_SCALE = 0.4*FS
 

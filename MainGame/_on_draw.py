@@ -15,11 +15,11 @@ def on_draw(self):
         self.crt_filter.use()
         self.crt_filter.clear()
 
-        self.hoop.draw()
-        self.hoop.draw_hit_box([255,0,0], 3)
+        self.basket.draw()
+        # self.basket.draw_hit_box([255,0,0], 3)
 
         self.active_fruits.draw()
-        self.active_fruits.draw_hit_boxes([255,0,0], 3)
+        # self.active_fruits.draw_hit_boxes([255,0,0], 3)
         self.fruit_list.draw()
 
         self.gui["timer_text"].draw()

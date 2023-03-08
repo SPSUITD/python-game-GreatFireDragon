@@ -171,14 +171,8 @@ class Menu(arcade.View):
 
         if self.rules:
             left, screen_width, bottom, screen_height = self.window.get_viewport()
-            arcade.draw_text("Congue inceptos orci quam mauris per vitae maecenas.",
-                            screen_width // 2, screen_height // 2 + 60*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("Dapibus sociosqu tristique hymenaeos bibendum commodo",
-                            screen_width // 2, screen_height // 2 + 20*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("semper nunc cum accumsan velit class commodo.",
-                            screen_width // 2, screen_height // 2 - 20*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("Est mollis cum vulputate nulla ad Gravida in vivamus.",
-                            screen_width // 2, screen_height // 2 - 60*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
+            arcade.draw_text("Catch fruits (left click) and bring them to the basket.\nBasket will not stay at one place!\nYour objective is to catch as much fruits as you can untill timer runs off.\nCatch power-ups for help!\nGood luck!",
+                            screen_width // 2, screen_height // 2 + 150*FS, font_name=FONT_FUTURE, font_size=FONT_SIZE*1.3, anchor_x="center", multiline=True, width=SCREEN_WIDTH*0.9)
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
                          SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")

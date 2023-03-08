@@ -6,7 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 
 from static.constants import *
-from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index
+from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -15,23 +15,24 @@ def on_update(self, delta_time):
     if self.on_pause:
         pass
     else:
-        fruit_at_hoop = self.hoop.collides_with_list(self.held_fruits)
+        fruit_at_basket = self.basket.collides_with_list(self.held_fruits)
         # print(self.fruit_list)
-        if len(fruit_at_hoop)>0:
+        if len(fruit_at_basket)>0:
+            # RESTART FRUIT
             self.held_fruits.pop()
-            fruit_at_hoop[0].set_position(-200, random.randrange(200, 1000))    # hide the fruit
+            fruit_at_basket[0].set_position(-200, random.randrange(200, 1000))    # hide the fruit
             self.removed_from_engine = False
-            self.physics_engine.add_sprite(fruit_at_hoop[0])
-
+            self.physics_engine.add_sprite(fruit_at_basket[0])
             # ANIMATION ON
             self.play_fruit_pop = 1
             # SCORE
             self.added_score_player = self.added_score.play()
             self.added_score.set_volume(data["volume"], self.added_score_player)
 
-            self.gui["score"] += int(fruit_at_hoop[0].scale*10/FS)
+            self.gui["score"] += int(fruit_at_basket[0].scale*10/FS)
             score = self.gui["score"]
             self.gui["score_text"].text = f"{score:02d} points"
+            # TELEPORT BASKET
 
         self.physics_engine.step()
 
@@ -64,6 +65,16 @@ def on_update(self, delta_time):
             from EndScreen import EndScreen
             view = EndScreen()
             self.window.show_view(view)
+
+        if seconds % 20 == 0:
+            if not self.fruit_added:
+                add_fruit(self)
+                self.fruit_added = True
+        else:
+            self.fruit_added = False
+            
+        print(seconds%20, self.fruit_added)
+
 
 
         # ANIMATIONS

@@ -26,10 +26,10 @@ def setup(self):
         self.fruit_list.append(fruit)
           
 
-    # HOOP
-    self.hoop.center_x = SCREEN_WIDTH/1.3
-    self.hoop.center_y = SCREEN_HEIGHT/1.5
-    self.hoop.scale = 2*FS
+    # basket
+    self.basket.center_x = SCREEN_WIDTH/1.3
+    self.basket.center_y = SCREEN_HEIGHT/1.5
+    self.basket.scale = 0.1*FS
 
     
     # ADDING FRUITS to physics engine
@@ -46,19 +46,19 @@ def setup(self):
     self.fruit_list.pop(-1)
 
     # EFFECTS
-    self.fruit_pop.set_position(self.hoop.position[0], self.hoop.position[1])
+    self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])
     self.fruit_pop.scale = 0.5
     self.fruit_pop.set_texture(33)
 
 
 
     # COLLISION HANDLERS (ATAVISM)
-    # def fruit_hoop_handler(fruit, hoop, _arbiter, _space, _data):
+    # def fruit_basket_handler(fruit, basket, _arbiter, _space, _data):
     #     # self.physics_engine.remove_sprite(fruit)
     #     # respawn_fruit(self, fruit)
-    #     print("fruit and hoop collide")
+    #     print("fruit and basket collide")
 
-    # self.physics_engine.add_collision_handler("fruit", "hoop", post_handler=fruit_hoop_handler)
+    # self.physics_engine.add_collision_handler("fruit", "basket", post_handler=fruit_basket_handler)
 
 
 
