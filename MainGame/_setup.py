@@ -14,7 +14,8 @@ def setup(self):
     self.physics_engine = arcade.PymunkPhysicsEngine(damping=damping, gravity=gravity)
 
  # BIG FRUITS
-    fruit_path = "fruits/"
+    # fruit_path = "fruits/"
+    fruit_path = "same_sized_fruits/"
     dir_list = os.listdir(fruit_path)
 
     for i in dir_list: 
@@ -28,7 +29,7 @@ def setup(self):
 
     # basket
     teleport_basket(self)
-    self.basket.scale = 0.1*FS
+    self.basket.scale = BASKET_SCALE
 
     
     # ADDING FRUITS to physics engine
@@ -59,7 +60,7 @@ def setup(self):
 
     # EFFECTS
     self.fruit_pop.set_position(self.basket.position[0], self.basket.position[1])
-    self.fruit_pop.scale = 0.3
+    self.fruit_pop.scale = FRUIT_POP_SCALE
     self.fruit_pop.set_texture(33)
 
 

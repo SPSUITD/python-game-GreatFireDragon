@@ -7,6 +7,7 @@ data = json.load(f)
 
 from static.constants import *
 from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, add_power_up, teleport_basket
+from GeneralModule import normal_basket, normal_fruits
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
@@ -49,14 +50,15 @@ def on_update(self, delta_time):
         self.gui["timer"] -= delta_time
         minutes = int(self.gui["timer"]) // 60
         seconds = int(self.gui["timer"]) % 60
-        seconds_100s = int((self.gui["timer"] - seconds) * 100)
+        seconds_100s = int((self.gui["timer"] - seconds -minutes*60) * 100)
         self.gui["timer_text"].text = f"{minutes:02d}:{seconds:02d}:{seconds_100s:02d}"
+
 
         if self.gui["timer"] < 10:
             if self.gui["timer"]*10 % 2 > 1:
-                self.gui["timer_text"].color = arcade.color.RED
+                self.gui["timer_text"].color = TIMER_ENDING_COLOR
             else:
-                self.gui["timer_text"].color = arcade.color.ORANGE_RED
+                self.gui["timer_text"].color = TIMER_COLOR
 
         if self.gui["timer"] < 0:
             data["score"] = self.gui["score"]
@@ -92,9 +94,15 @@ def on_update(self, delta_time):
         for i in range(len(self.active_power_ups)):
             if self.active_power_ups[i].position[1] < random.randrange(OOB_START, OOB_OVER):
                 self.physics_engine.remove_sprite(self.active_power_ups[i])
-                self.power_up_list.append(self.active_power_ups[i])
+                self.power_up_list.insert(self.current_power_up, self.active_power_ups[i])
                 self.power_up_list[-1].set_position(0, -200)
                 self.active_power_ups.pop(i)
+
+        # POWER-UP TIMER
+        if (self.power_up_timer - self.gui["timer"]) > 5:
+            normal_basket(self)
+            normal_fruits(self)
+            self.power_up_timer = 0
 
 
         # ANIMATIONS

@@ -118,7 +118,7 @@ def teleport_basket(self):
     self.basket.center_x = random.randrange(int(SCREEN_WIDTH*0.1), int(SCREEN_WIDTH*0.9))
     self.basket.center_y = random.randrange(int(SCREEN_HEIGHT*0.1), int(SCREEN_HEIGHT*0.9))
 
-
+# POWER-UPs
 def add_power_up(self):
     random_index = random.randrange(0, len(self.power_up_list))
     self.active_power_ups.append(self.power_up_list[random_index])
@@ -128,3 +128,24 @@ def add_power_up(self):
     print("GM: power-up added!")
 
     return random_index # This will become self.current_power_up
+
+def big_basket(self):
+    self.basket.scale = BASKET_SCALE*2
+    self.fruit_pop.scale = FRUIT_POP_SCALE*2
+def normal_basket(self):
+    self.basket.scale = BASKET_SCALE
+    self.fruit_pop.scale = FRUIT_POP_SCALE
+
+def x2_fruits(self):
+    for fruit in self.fruit_list:
+        fruit.scale = FRUIT_SCALE*2
+    for fruit in self.active_fruits:
+        fruit.scale = FRUIT_SCALE*2
+def normal_fruits(self):
+    for fruit in self.fruit_list:
+        fruit.scale = FRUIT_SCALE
+    for fruit in self.active_fruits:
+        fruit.scale = FRUIT_SCALE
+
+def more_time(self):
+    self.gui["timer"] += 15

@@ -16,8 +16,8 @@ class  MainGame(arcade.View):
 
         # CRT filter
         self.crt_filter = CRTFilter(SCREEN_WIDTH, SCREEN_HEIGHT,
-                                    resolution_down_scale=3.0,
-                                    hard_scan=-8.0, hard_pix=-3.0,
+                                    resolution_down_scale=3.0*FS,
+                                    hard_scan=-8.0*FS, hard_pix=-3.0*FS,
                                     display_warp = Vec2(1.0 / 32.0, 1.0 / 18.0),
                                     mask_dark=0.5, mask_light=1.5)
         self.filter_on = False
@@ -30,6 +30,7 @@ class  MainGame(arcade.View):
         self.power_up_list = arcade.SpriteList(use_spatial_hash=False)
         self.active_power_ups = arcade.SpriteList(use_spatial_hash=False)
         self.current_power_up = None
+        self.power_up_timer = 0
         
 
         # для удобного удаления объектов из массивов
@@ -66,10 +67,10 @@ class  MainGame(arcade.View):
 
         # TIMER & SCORE
         self.gui = {
-            "timer": 125.3,
+            "timer": 120,
             "timer_text": arcade.Text(
                                 text="00:00:00",
-                                start_x= 100*FS,
+                                start_x= 150*FS,
                                 start_y= 50*FS,
                                 color=TIMER_COLOR,
                                 font_size=FONT_SIZE*2,
@@ -90,8 +91,8 @@ class  MainGame(arcade.View):
     
         # SOUNDS
         self.added_score = arcade.load_sound("sounds/added_score.wav")
+        self.power_up_sound = arcade.load_sound("sounds/bonus.mp3")
        
-        
 
     
     from ._setup import setup

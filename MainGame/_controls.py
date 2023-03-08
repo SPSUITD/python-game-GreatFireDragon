@@ -6,6 +6,7 @@ f = open("static/controls.json")
 data = json.load(f)
 from static.constants import *
 from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg
+from GeneralModule import big_basket, x2_fruits, more_time
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
 
@@ -23,9 +24,7 @@ def on_mouse_press(self, x, y, button, key_modifiers):
 
         if not self.removed_from_engine:
             self.physics_engine.remove_sprite(primary_fruit)
-            # primary_fruit.scale = FRUIT_HELD_SCALE
             self.removed_from_engine = True
-
 
         self.held_fruits.append(primary_fruit)
         self.held_fruits[0].turn_right(self.held_fruits[0].angle)
@@ -40,8 +39,23 @@ def on_mouse_press(self, x, y, button, key_modifiers):
         self.power_up_list.insert(self.current_power_up, power_up)
         self.power_up_list[self.current_power_up].center_y = -200
         self.active_power_ups.pop()
+
+        if self.current_power_up == 0:
+            big_basket(self)
+            print("Controls: arrow catched!")
+        elif self.current_power_up == 1:
+            x2_fruits(self)
+            print("Controls: x2 catched!")
+        elif self.current_power_up == 2:
+            more_time(self)
+            print("Controls: clock catched!") 
+
         
-        
+        power_up_sound_player = self.power_up_sound.play()
+        self.power_up_sound.set_volume(data["volume"], power_up_sound_player)
+
+        self.power_up_timer = self.gui["timer"]
+
     else:
         self.mouse_is_pressed = True
 
