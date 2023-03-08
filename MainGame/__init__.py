@@ -62,7 +62,7 @@ class  MainGame(arcade.View):
                                 text="00:00:00",
                                 start_x= 100*FS,
                                 start_y= 50*FS,
-                                color=arcade.color.ORANGE_PEEL,
+                                color=TIMER_COLOR,
                                 font_size=FONT_SIZE*2,
                                 anchor_x="center",
                             ),
@@ -71,7 +71,7 @@ class  MainGame(arcade.View):
                                 text="0",
                                 start_x= SCREEN_WIDTH - 110*FS,
                                 start_y= 50*FS,
-                                color=arcade.color.ORANGE_PEEL,
+                                color= SCORE_COLOR,
                                 font_size=FONT_SIZE*2,
                                 anchor_x="center",
                             )

@@ -28,7 +28,7 @@ def on_update(self, delta_time):
             # SCORE
             self.gui["score"] += int(fruit_at_hoop[0].scale*10/FS)
             score = self.gui["score"]
-            self.gui["score_text"].text = f"{score} points"
+            self.gui["score_text"].text = f"{score:02d} points"
 
         self.physics_engine.step()
 
@@ -65,11 +65,17 @@ def on_update(self, delta_time):
 
         # ANIMATIONS
         if self.play_fruit_pop > 0:
-            self.fruit_pop.update_animation()
+            self.fruit_pop.set_texture(self.play_fruit_pop//2)
             self.play_fruit_pop += 1
+            
+            self.gui["score_text"].color = SCORE_ADDED_COLOR
 
-            if self.play_fruit_pop > 85:
+            if self.play_fruit_pop > 33*2:
                 self.play_fruit_pop = 0
+                self.gui["score_text"].color = TIMER_COLOR
+
+
+                
 
 
 

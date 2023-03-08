@@ -80,6 +80,11 @@ def on_key_press(self, symbol, modifiers):
         create_buttons(self)
         self.on_pause = not self.on_pause
         self.manager.enable() if self.on_pause else self.manager.disable()
+
+    if symbol == arcade.key.L and modifiers & arcade.key.MOD_SHIFT:
+        self.gui["timer"] = 0
+    if symbol == arcade.key.K and modifiers & arcade.key.MOD_SHIFT:
+        self.gui["score"] = 420
         
     if symbol == arcade.key.UP:
         print("presed: UP")
