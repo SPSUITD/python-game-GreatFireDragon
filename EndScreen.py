@@ -63,12 +63,14 @@ class EndScreen(arcade.View):
         
 
     def on_click_start(self, event):
+        self.v_box.clear()
         from MainGame import MainGame
         view = MainGame()
         view.setup()
         self.window.show_view(view)
 
     def on_click_get_back(self, event):
+        self.v_box.clear()
         from Menu import Menu
         view = Menu()
         self.window.show_view(view)
