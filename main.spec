@@ -11,7 +11,6 @@ a = Analysis(
     datas=[('images', 'images'), ('fruits', 'fruits'), ('sounds', 'sounds'), ('aracde', 'arcade'), ('controls.json', '.')],
     hiddenimports=[],
     hookspath=[],
-    hooksconfig={},
     runtime_hooks=[],
     excludes=[],
     win_no_prefer_redirects=False,
