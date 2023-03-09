@@ -2,7 +2,7 @@ import arcade
 import arcade.gui
 import random
 from pyglet.math import Vec2
-from static.constants import *
+from constants import *
 import json
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -41,7 +41,7 @@ def define_cursor(self):
 
 # GUI functions
 def draw_gradient_bg(self):
-    f = open("static/controls.json")
+    f = open("controls.json")
     data = json.load(f)
     FS = data["FULLSCREEN_SCALE"]
 

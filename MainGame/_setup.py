@@ -2,7 +2,7 @@
 import arcade
 import os
 import random
-from static.constants import *
+from constants import *
 from GeneralModule import add_fruit_to_physics_engine, teleport_basket
 
 

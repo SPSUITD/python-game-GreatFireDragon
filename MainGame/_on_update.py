@@ -2,10 +2,10 @@
 import arcade
 import random
 import json
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 
-from static.constants import *
+from constants import *
 from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, add_power_up, teleport_basket
 from GeneralModule import normal_basket, normal_fruits
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -64,7 +64,7 @@ def on_update(self, delta_time):
             data["score"] = self.gui["score"]
             if self.gui["score"] > data["highest_score"]:
                 data["highest_score"] = self.gui["score"]
-            with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+            with open("controls.json", "w") as jsonFile:     # чтобы было удобно
                 json.dump(data, jsonFile)
 
             from EndScreen import EndScreen

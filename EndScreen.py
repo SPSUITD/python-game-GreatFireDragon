@@ -4,10 +4,10 @@ import arcade.gui
 from arcade.experimental.uislider import UISlider
 import json
 
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 
-from static.constants import *
+from constants import *
 from GeneralModule import get_back_button_create, define_cursor, draw_gradient_bg
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
  

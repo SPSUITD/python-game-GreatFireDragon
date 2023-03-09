@@ -5,7 +5,7 @@ from pyglet.math import Vec2
 from arcade.experimental import Shadertoy
 import json
 # files
-from static.constants import *
+from constants import *
 from GeneralModule import define_cursor
 
 class  MainGame(arcade.View):

@@ -2,9 +2,9 @@
 import arcade
 import arcade.gui
 import json
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
-from static.constants import *
+from constants import *
 from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg, add_fruit
 from GeneralModule import big_basket, x2_fruits, more_time
 
@@ -115,7 +115,7 @@ def on_key_press(self, symbol, modifiers):
     if symbol == arcade.key.UP:
         if not data["volume"] > 0.945:
             data["volume"] += 0.05
-            with open("static/controls.json", "w") as jsonFile:
+            with open("controls.json", "w") as jsonFile:
                 json.dump(data, jsonFile)
         test_sound_player = self.test_sound.play()
         self.test_sound.set_volume(data["volume"], test_sound_player)
@@ -123,7 +123,7 @@ def on_key_press(self, symbol, modifiers):
     if symbol == arcade.key.DOWN:
         if not data["volume"] < 0.051:
             data["volume"] -= 0.05
-            with open("static/controls.json", "w") as jsonFile:
+            with open("controls.json", "w") as jsonFile:
                 json.dump(data, jsonFile)
         test_sound_player = self.test_sound.play()
         self.test_sound.set_volume(data["volume"], test_sound_player)

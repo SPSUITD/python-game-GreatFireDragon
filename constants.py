@@ -2,7 +2,7 @@ import arcade
 import arcade.gui
 
 import json
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 FS = data["FULLSCREEN_SCALE"]
 

@@ -12,6 +12,7 @@ __pycache__/*
 # Файлы установки
 build/*
 dist/*
+main.spec
 
 # tests
 tests

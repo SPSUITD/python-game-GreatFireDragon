@@ -4,10 +4,10 @@ import arcade.gui
 from arcade.experimental.uislider import UISlider
 
 from GeneralModule import get_back_button_create
-from static.constants import *
+from constants import *
 
 import json
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width

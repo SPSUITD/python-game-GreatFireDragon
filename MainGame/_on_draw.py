@@ -1,6 +1,6 @@
 # modules
 import arcade
-from static.constants import *
+from constants import *
 from GeneralModule import draw_gradient_bg
 
 def on_draw(self):

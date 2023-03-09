@@ -4,14 +4,13 @@ import arcade.gui
 from arcade.experimental.uislider import UISlider
 import json
 
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 
 from MainGame import MainGame
 
 
-from static.constants import *
-# import static.constants as const
+from constants import *
 
 from GeneralModule import cursor_coordinates, define_cursor, draw_gradient_bg, get_back_button_create
 from basicControls import on_mouse_basic_press, on_mouse_basic_release, on_mouse_basic_motion, on_mouse_basic_enter, on_mouse_basic_leave, on_key_basic_press, on_key_basic_release
@@ -100,7 +99,7 @@ class Menu(arcade.View):
             label.fit_content()
 
             data["volume"] = ui_slider.value / 100
-            with open("static/controls.json", "w") as jsonFile:
+            with open("controls.json", "w") as jsonFile:
                 json.dump(data, jsonFile)
 
         # to clear slider afterwards
@@ -130,7 +129,7 @@ class Menu(arcade.View):
 
         data["fullscreen"] = self.window.fullscreen             # Также запись состояния в JSON
         data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
-        with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+        with open("controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
 
         # arcade.close_window()

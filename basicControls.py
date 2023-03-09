@@ -1,9 +1,9 @@
 import arcade
 import json
-f = open("static/controls.json")
+f = open("controls.json")
 data = json.load(f)
 
-from static.constants import *
+from constants import *
 from GeneralModule import cursor_coordinates, is_cursor_hover_fruit, draw_gradient_bg
 
 width, height = arcade.window_commands.get_display_size()   # Window height and width
@@ -37,7 +37,7 @@ def on_key_basic_press(self, symbol, modifiers):
 
     #     data["fullscreen"] = self.window.fullscreen                    # Также запись состояния в JSON
     #     data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
-    #     with open("static/controls.json", "w") as jsonFile:     # чтобы было удобно
+    #     with open("controls.json", "w") as jsonFile:     # чтобы было удобно
     #         json.dump(data, jsonFile)
 
         # arcade.close_window()
