@@ -94,25 +94,32 @@ def add_fruit_to_physics_engine(self, fruit):
 
 # i → self.active_fruits[i]
 def swap_fruit_index(self, i):
-    random_index = random.randrange(0, len(self.fruit_list))
-
-    self.physics_engine.remove_sprite(self.active_fruits[i])
-    self.fruit_list.append(self.active_fruits[i])
-    self.active_fruits.pop(i)
+    try:
+        random_index = random.randrange(0, len(self.fruit_list))
     
-    self.active_fruits.append(self.fruit_list[random_index])
-    self.fruit_list.pop(random_index)
-    add_fruit_to_physics_engine(self, self.active_fruits[-1])
+        self.physics_engine.remove_sprite(self.active_fruits[i])
+        self.fruit_list.append(self.active_fruits[i])
+        self.active_fruits.pop(i)
+        
+        self.active_fruits.append(self.fruit_list[random_index])
+        self.fruit_list.pop(random_index)
+        add_fruit_to_physics_engine(self, self.active_fruits[-1])
 
-    respawn_fruit(self, self.active_fruits[-1])
+        respawn_fruit(self, self.active_fruits[-1])
+    except:
+        respawn_fruit(self, self.active_fruits[i])
+
 
 
 def add_fruit(self):
-    random_index = random.randrange(0, len(self.fruit_list))
-    self.active_fruits.append(self.fruit_list[random_index])
-    add_fruit_to_physics_engine(self, self.active_fruits[-1])
-    self.fruit_list.pop(random_index)
-    print("GM: fruit added!")
+    try:
+        print("GM: Fruit added. Currently ", len(self.active_fruits), " active fruits!")
+        random_index = random.randrange(0, len(self.fruit_list))
+        self.active_fruits.append(self.fruit_list[random_index])
+        add_fruit_to_physics_engine(self, self.active_fruits[-1])
+        self.fruit_list.pop(random_index)
+    except:
+        print("GM: can't add fruit, out of stock ;)")
 
 def teleport_basket(self):
     self.basket.center_x = random.randrange(int(SCREEN_WIDTH*0.1), int(SCREEN_WIDTH*0.9))
