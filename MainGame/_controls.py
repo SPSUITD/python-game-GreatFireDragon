@@ -108,6 +108,8 @@ def on_key_press(self, symbol, modifiers):
         self.gui["timer"] = 0
     if symbol == arcade.key.K and modifiers & arcade.key.MOD_SHIFT:
         self.gui["score"] += 10
+        score = self.gui["score"]
+        self.gui["score_text"].text = f"{score:02d} points"
     if symbol == arcade.key.J and modifiers & arcade.key.MOD_SHIFT:
         add_fruit(self)
         

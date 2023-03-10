@@ -78,7 +78,7 @@ class  MainGame(arcade.View):
                             ),
             "score": 0,
             "score_text": arcade.Text(
-                                text="0",
+                                text="no points",
                                 start_x= SCREEN_WIDTH - 110*FS,
                                 start_y= 50*FS,
                                 color= SCORE_COLOR,
