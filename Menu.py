@@ -2,7 +2,9 @@
 import arcade
 import arcade.gui
 from arcade.experimental.uislider import UISlider
+import os, time
 import json
+
 
 f = open("controls.json")
 data = json.load(f)
@@ -132,7 +134,12 @@ class Menu(arcade.View):
         with open("controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)
 
-        # arcade.close_window()
+        try:
+            arcade.close_window()
+            os.system("python main.py")
+            print("Restarting... (fullscreen change)")
+        except:
+            pass
         arcade.close_window()
 
     def on_click_rules(self, event):
@@ -174,10 +181,10 @@ class Menu(arcade.View):
         if self.settings:
             arcade.draw_text("Adjust the slider to change music volume: ",
                          SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
-            arcade.draw_text("WARNING! If you press toggle fullscreen button, ",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 80*FS, font_name=FONT, font_size=FONT_SIZE, color=arcade.color.RED, anchor_x="center")
-            arcade.draw_text("The programm will crash itself on purpose.",
-                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 120*FS, font_name=FONT, font_size=FONT_SIZE, color=arcade.color.RED, anchor_x="center")
+            arcade.draw_text("If you press toggle fullscreen button, ",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 80*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
+            arcade.draw_text("The programm will reload itself.",
+                         SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 120*FS, font_name=FONT, font_size=FONT_SIZE, anchor_x="center")
 
         self.manager.draw()         # Buttons (menu) and slider
         self.cursor_sprite.draw()   # должен быть последним!
