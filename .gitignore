@@ -1,0 +1,18 @@
+# Tiled — редактор 2D-уровней для python arcade
+Tiled/*
+
+# картинки
+miniFruits/*
+
+# Файлы VSCodium
+__pycache__/*
+*.pyc
+
+
+# Файлы установки
+build/*
+dist/*
+
+# tests
+tests
+.github/workflows/pyinstaller_build.yml
