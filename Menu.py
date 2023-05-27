@@ -121,15 +121,14 @@ class Menu(arcade.View):
             self.manager.add(self.slider_widgets[i])
 
 
-        
-        
+
     def on_click_fullscreen(self, event):
         self.window.set_fullscreen(not self.window.fullscreen)
         width, height = self.window.get_size()
         self.window.set_viewport(0, width, 0, height)
         
 
-        data["fullscreen"] = self.window.fullscreen             # Также запись состояния в JSON
+        data["fullscreen"] = self.window.fullscreen      # Также запись состояния в JSON
         data["FULLSCREEN_SCALE"] = width/SCREEN_WIDTH
         with open("controls.json", "w") as jsonFile:     # чтобы было удобно
             json.dump(data, jsonFile)

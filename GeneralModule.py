@@ -155,4 +155,4 @@ def normal_fruits(self):
         fruit.scale = FRUIT_SCALE
 
 def more_time(self):
-    self.gui["timer"] += 15
+    self.gui["timer"] += 10

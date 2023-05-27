@@ -21,7 +21,7 @@ class  MainGame(arcade.View):
                                     display_warp = Vec2(1.0 / 32.0, 1.0 / 18.0),
                                     mask_dark=0.5, mask_light=1.5)
         self.filter_on = False
-        
+
         # OBJECTS
         self.fruit_list = arcade.SpriteList(use_spatial_hash=False)
         self.active_fruits = arcade.SpriteList(use_spatial_hash=False)
@@ -31,7 +31,7 @@ class  MainGame(arcade.View):
         self.active_power_ups = arcade.SpriteList(use_spatial_hash=False)
         self.current_power_up = None
         self.power_up_timer = 0
-        
+
 
         # для удобного удаления объектов из массивов
         self.removed_from_engine = False
