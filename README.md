@@ -1,17 +1,28 @@
+
 # Кулешов Михаил Сергеевич 2-МД-25
-разработка игры на питоне 4 семестр 2023 год
 
-## FRUIT GRABBER
-<p align="center"><img src="https://user-images.githubusercontent.com/90414648/218249332-ffdbf93a-f42b-4abb-bb55-9149c7c4a4d1.jpg?raw=true" alt="Does css work in .md???"/></p>
+I called the game **FRUIT GRABBER**. In this game you have to catch fruits that fly aroung and bring them to the basket. But basket won't stay at one place. Also you're limited by timer. **Catch as many fruits as you can**, increasing the amount of points! **Catch power-ups**, they can make you **basket bigger**, fruits will give **x2** points or even **add up time** to your timer.
+
+## How to install?
+
+**You use windows** you don't have to know anything about programming
+>	 1. Download `main.rar` file
+>	 2. Extract it anywhere you want
+>	 3. Execute `main.exe` file
+
+![image](https://user-images.githubusercontent.com/90414648/224473135-31acf786-1578-43e6-832f-795562864939.png)
 
 
+**In case if you use other OS**, you must have at least basic knowledge of how to perform following↓ 
+>	 1. You will have to manually install python (I recommend using `3.9-3.10` version). 
+>	 2. Than in your code editor, install everything from `requirements.txt`. 
+>	 3. Simply excecute `main.py` file with python.
 
  
- ### progress:
- <img src="https://user-images.githubusercontent.com/90414648/221510171-35d7e3b6-6f2c-4515-b2c8-1aa18e506474.png" alt="progress-1"/>
- 
- 
-![image](https://user-images.githubusercontent.com/90414648/222957650-1d53b471-313c-409a-9b6e-395c1e1ba347.png)
-![image](https://user-images.githubusercontent.com/90414648/222957661-edefaee5-e4a1-413e-992e-cb15292f125e.png)
-![image](https://user-images.githubusercontent.com/90414648/222957673-fe634512-c9b8-44ec-87e6-63375e4566cb.png)
+
+## Here are some screenshots from the developement progress: 
+![image](https://user-images.githubusercontent.com/90414648/221510171-35d7e3b6-6f2c-4515-b2c8-1aa18e506474.png)
 ![image](https://user-images.githubusercontent.com/90414648/222957879-2cca5d1d-c204-4470-b322-b70627f4d3aa.png)
+
+
+> Written with [StackEdit](https://stackedit.io/).
