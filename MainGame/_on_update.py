@@ -8,7 +8,6 @@ data = json.load(f)
 from constants import *
 from GeneralModule import respawn_fruit, add_fruit_to_physics_engine, swap_fruit_index, add_fruit, add_power_up, teleport_basket
 from GeneralModule import normal_basket, normal_fruits
-width, height = arcade.window_commands.get_display_size()   # Window height and width
 
 
 def on_update(self, delta_time):
@@ -36,7 +35,7 @@ def on_update(self, delta_time):
             self.gui["score"] += int(fruit_at_basket[0].scale*10/FS)
             score = self.gui["score"]
             self.gui["score_text"].text = f"{score:02d} points"
-            
+
 
         self.physics_engine.step()
 
@@ -60,25 +59,26 @@ def on_update(self, delta_time):
             else:
                 self.gui["timer_text"].color = TIMER_COLOR
 
+        # Если время истекло
         if self.gui["timer"] < 0:
             data["score"] = self.gui["score"]
             if self.gui["score"] > data["highest_score"]:
                 data["highest_score"] = self.gui["score"]
-            with open("controls.json", "w") as jsonFile:     # чтобы было удобно
+            with open("controls.json", "w") as jsonFile:
                 json.dump(data, jsonFile)
 
             from EndScreen import EndScreen
             view = EndScreen()
             self.window.show_view(view)
 
-        # ADDING MORE FRUITS
+        # Добавление новых фруктов
         if seconds % 20 == 0:
             if not self.fruit_added:
                 add_fruit(self)
                 self.fruit_added = True
         else:
             self.fruit_added = False
-        # ADDING MORE POWER-UPs
+        # Добавление новых POWER-UP-ов
         if seconds % 5 == 0:
             if not self.power_up_added:
                 self.current_power_up = add_power_up(self)
