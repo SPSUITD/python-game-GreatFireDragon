@@ -1,0 +1,12 @@
+# Файлы VSCodium
+__pycache__/*
+*.pyc
+
+
+# Файлы установки
+build/*
+dist/*
+
+# tests
+.github/workflows/pyinstaller_build.yml
+main.spec
